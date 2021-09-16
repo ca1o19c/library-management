@@ -25,7 +25,6 @@ public class MovieHttp {
 
     @GetMapping
     public ResponseEntity<List<Movie>> findAll() {
-
         return new ResponseEntity<>(movieService.findAll(), HttpStatus.OK);
     }
 
@@ -40,8 +39,13 @@ public class MovieHttp {
 
     @GetMapping("/{id}")
     public ResponseEntity<Movie> findById(@PathVariable String id) {
-
         return new ResponseEntity<>(movieService.findById(id), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteOne(@PathVariable String id) {
+        movieService.deleteOne(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     private URI getLocation(String id) {

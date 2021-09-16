@@ -18,22 +18,23 @@ public class MovieService {
     }
 
     public List<Movie> findAll() {
-
         return movies;
     }
 
-    public Movie createOne(String id, Movie movie) {
+    public void createOne(String id, Movie movie) {
         movie.created(id);
         movies.add(movie);
-
-        return movie;
     }
 
     public Movie findById(String id) {
-
         return movies.stream()
                 .filter(movie -> movie.getId().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Movie not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID not found"));
+    }
+
+    public void deleteOne(String id) {
+        var movie = this.findById(id);
+        movies.remove(movie);
     }
 }

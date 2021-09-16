@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
@@ -67,5 +68,29 @@ public class Movie {
     public void created(String id) {
         this.setId(id);
         this.setCreatedOn(LocalDateTime.now());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Movie movie = (Movie) o;
+        return Objects.equals(id, movie.id) && Objects.equals(name, movie.name) && Objects.equals(producers, movie.producers) && Objects.equals(createdOn, movie.createdOn) && Objects.equals(updatedOn, movie.updatedOn);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, producers, createdOn, updatedOn);
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", producers=" + producers +
+                ", createdOn=" + createdOn +
+                ", updatedOn=" + updatedOn +
+                '}';
     }
 }
