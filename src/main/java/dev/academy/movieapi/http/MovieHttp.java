@@ -42,6 +42,12 @@ public class MovieHttp {
         return new ResponseEntity<>(movieService.findById(id), HttpStatus.OK);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> updateOne(@PathVariable String id, @RequestBody Movie movie) {
+        movieService.updateOne(id, movie);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteOne(@PathVariable String id) {
         movieService.deleteOne(id);
