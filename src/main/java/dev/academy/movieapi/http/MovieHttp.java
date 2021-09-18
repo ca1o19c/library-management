@@ -44,6 +44,12 @@ public class MovieHttp {
         return new ResponseEntity<>(movieService.findById(id), HttpStatus.OK);
     }
 
+    @GetMapping(path = "/find")
+    public ResponseEntity<List<Movie>> findByName(@RequestParam(required = false) String name) {
+        return new ResponseEntity<>(movieService.findByName(name), HttpStatus.OK);
+    }
+
+
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateOne(@PathVariable String id, @RequestBody MovieDto dto) {
         movieService.updateOne(id, dto);

@@ -24,6 +24,10 @@ public class MovieService {
         return repository.findAll();
     }
 
+    public List<Movie> findByName(String name) {
+        return repository.findByName(name);
+    }
+
     public void createOne(MovieDto dto, String id) {
         var movie = MovieMapper.INSTANCE.toMovie(dto);
 
