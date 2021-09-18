@@ -2,6 +2,7 @@ package dev.academy.movieapi.service;
 
 import dev.academy.movieapi.domain.Movie;
 import dev.academy.movieapi.dto.MovieDto;
+import dev.academy.movieapi.exception.BadRequestException;
 import dev.academy.movieapi.mapper.MovieMapper;
 import dev.academy.movieapi.repository.MovieRepository;
 import org.springframework.http.HttpStatus;
@@ -38,7 +39,7 @@ public class MovieService {
 
     public Movie findById(String id) {
         return repository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID not found"));
+                .orElseThrow(() -> new BadRequestException("ID not found"));
     }
 
 
