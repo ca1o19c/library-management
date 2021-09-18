@@ -1,57 +1,59 @@
 package dev.academy.movieapi.service;
 
 import dev.academy.movieapi.domain.Movie;
+import dev.academy.movieapi.dto.MovieDto;
+import dev.academy.movieapi.mapper.MovieMapper;
+import dev.academy.movieapi.repository.MovieRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class MovieService {
 
-    private static List<Movie> movies;
+    private final MovieRepository repository;
 
-    static {
-        movies = new ArrayList<>(List.of());
+    public MovieService(final MovieRepository repository) {
+        this.repository = repository;
     }
 
     public List<Movie> findAll() {
-        return movies;
+        return repository.findAll();
     }
 
-    public void createOne(String id, Movie movie) {
-        movie.created(id);
-        movies.add(movie);
+    public void createOne(MovieDto dto, String id) {
+        var movie = MovieMapper.INSTANCE.toMovie(dto);
+
+        movie.created(id, LocalDateTime.now());
+
+        repository.save(movie);
     }
 
     public Movie findById(String id) {
-        return movies.stream()
-                .filter(movie -> movie.getId().equals(id))
-                .findFirst()
+        return repository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID not found"));
     }
 
-    public void updateOne(String id, Movie movie) {
 
-        var payload = List.of(this.findById(id));
+    public void updateOne(String id, MovieDto dto) {
+        var found = this.findById(id);
 
-        payload.forEach(m -> {
-             movie.setCreatedOn(m.getCreatedOn());
-        });
+        var movie = MovieMapper.INSTANCE.toMovie(dto);
 
-        this.deleteOne(id);
+        movie
+                .updated(LocalDateTime.now())
+                .created(found.getId(), found.getCreatedOn());
 
-        movie.setId(id);
-        movie.setUpdatedOn(LocalDateTime.now());
+        repository.save(movie);
 
-        movies.add(movie);
     }
 
     public void deleteOne(String id) {
         var movie = this.findById(id);
-        movies.remove(movie);
+
+        repository.deleteById(id);
     }
 }

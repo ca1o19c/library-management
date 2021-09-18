@@ -1,6 +1,7 @@
 package dev.academy.movieapi.http;
 
 import dev.academy.movieapi.domain.Movie;
+import dev.academy.movieapi.dto.MovieDto;
 import dev.academy.movieapi.service.MovieService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,9 +30,10 @@ public class MovieHttp {
     }
 
     @PostMapping
-    public ResponseEntity<Movie> createOne(@RequestBody @Validated Movie movie) {
+    public ResponseEntity<Movie> createOne(@RequestBody @Validated MovieDto dto) {
         var id = UUID.randomUUID().toString();
-        movieService.createOne(id, movie);
+
+        movieService.createOne(dto, id);
 
         var location = this.getLocation(id);
         return ResponseEntity.created(location).build();
@@ -43,8 +45,8 @@ public class MovieHttp {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateOne(@PathVariable String id, @RequestBody Movie movie) {
-        movieService.updateOne(id, movie);
+    public ResponseEntity<Void> updateOne(@PathVariable String id, @RequestBody MovieDto dto) {
+        movieService.updateOne(id, dto);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

@@ -2,14 +2,11 @@ package dev.academy.movieapi.domain;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import jdk.jfr.DataAmount;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @Entity
@@ -38,7 +35,7 @@ public class Movie {
         return this;
     }
 
-   public LocalDateTime getCreatedOn() {
+    public LocalDateTime getCreatedOn() {
         return createdOn;
     }
 
@@ -56,9 +53,15 @@ public class Movie {
         return this;
     }
 
-    public void created(String id) {
+    public void created(String id, LocalDateTime time) {
         this.setId(id);
-        this.setCreatedOn(LocalDateTime.now());
+        this.setCreatedOn(time);
+    }
+
+    public Movie updated(LocalDateTime time) {
+        this.setUpdatedOn(time);
+
+        return this;
     }
 
     @Override
