@@ -1,9 +1,12 @@
 package dev.academy.movieapi.dto;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 public class MovieDto {
 
+    @NotEmpty
     private String name;
 
     public String getName() {

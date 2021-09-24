@@ -51,7 +51,7 @@ public class MovieHttp {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateOne(@PathVariable String id, @RequestBody MovieDto dto) {
+    public ResponseEntity<Void> updateOne(@PathVariable String id, @Validated @RequestBody MovieDto dto) {
         movieService.updateOne(id, dto);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
