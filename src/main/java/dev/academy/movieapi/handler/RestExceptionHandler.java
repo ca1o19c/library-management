@@ -35,9 +35,9 @@ public class RestExceptionHandler {
 
         var fieldErrors = e.getBindingResult().getFieldErrors();
 
-        var fields = fieldErrors.stream().map(FieldError::getField).collect(Collectors.joining(","));
+        var fields = fieldErrors.stream().map(FieldError::getField).collect(Collectors.joining(", "));
         var fieldsMessage = fieldErrors.stream()
-                .map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.joining(","));
+                .map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.joining(", "));
 
         return new ResponseEntity<>(
                 ValidationExceptionDetails.builder()
