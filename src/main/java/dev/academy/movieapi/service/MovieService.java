@@ -5,12 +5,8 @@ import dev.academy.movieapi.dto.MovieDto;
 import dev.academy.movieapi.exception.BadRequestException;
 import dev.academy.movieapi.mapper.MovieMapper;
 import dev.academy.movieapi.repository.MovieRepository;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
-import javax.persistence.EntityNotFoundException;
-import javax.swing.text.html.parser.Entity;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
