@@ -1,11 +1,11 @@
 package dev.academy.movieapi.dto;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 public class MovieDto {
 
-    @NotEmpty
+    @NotBlank
     private String name;
 
     public String getName() {
@@ -19,7 +19,6 @@ public class MovieDto {
 
     @Override
     public boolean equals(Object o) {
-
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MovieDto movieDto = (MovieDto) o;
@@ -29,12 +28,5 @@ public class MovieDto {
     @Override
     public int hashCode() {
         return Objects.hash(name);
-    }
-
-    @Override
-    public String toString() {
-        return "MovieDto{" +
-                "Name='" + name + '\'' +
-                '}';
     }
 }
