@@ -1,4 +1,4 @@
-package dev.academy.movieapi.domain.handler;
+package dev.academy.movieapi.exception.handler;
 
 import dev.academy.movieapi.exception.BadRequestException;
 import dev.academy.movieapi.exception.BadRequestExceptionDetails;

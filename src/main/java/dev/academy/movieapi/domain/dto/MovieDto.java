@@ -1,4 +1,4 @@
-package dev.academy.movieapi.http.dto;
+package dev.academy.movieapi.domain.dto;
 
 import javax.validation.constraints.NotBlank;
 import java.util.Objects;
