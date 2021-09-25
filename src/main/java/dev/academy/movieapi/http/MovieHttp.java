@@ -3,6 +3,8 @@ package dev.academy.movieapi.http;
 import dev.academy.movieapi.domain.Movie;
 import dev.academy.movieapi.dto.MovieDto;
 import dev.academy.movieapi.service.MovieService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -25,8 +27,8 @@ public class MovieHttp {
     }
 
     @GetMapping
-    public ResponseEntity<List<Movie>> findAll() {
-        return new ResponseEntity<>(movieService.findAll(), HttpStatus.OK);
+    public ResponseEntity<Page<Movie>> findAll(Pageable pageable) {
+        return new ResponseEntity<>(movieService.findAll(pageable), HttpStatus.OK);
     }
 
     @PostMapping

@@ -5,6 +5,8 @@ import dev.academy.movieapi.dto.MovieDto;
 import dev.academy.movieapi.exception.BadRequestException;
 import dev.academy.movieapi.mapper.MovieMapper;
 import dev.academy.movieapi.repository.MovieRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -20,8 +22,8 @@ public class MovieService {
         this.repository = repository;
     }
 
-    public List<Movie> findAll() {
-        return repository.findAll();
+    public Page<Movie> findAll(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     public List<Movie> findByName(String name) {
