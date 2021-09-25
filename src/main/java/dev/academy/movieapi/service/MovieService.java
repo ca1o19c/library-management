@@ -1,7 +1,7 @@
 package dev.academy.movieapi.service;
 
 import dev.academy.movieapi.domain.Movie;
-import dev.academy.movieapi.domain.exception.BadRequestException;
+import dev.academy.movieapi.exception.BadRequestException;
 import dev.academy.movieapi.http.dto.MovieDto;
 import dev.academy.movieapi.mapper.MovieMapper;
 import dev.academy.movieapi.repository.MovieRepository;

@@ -1,9 +1,9 @@
 package dev.academy.movieapi.domain.handler;
 
-import dev.academy.movieapi.domain.exception.BadRequestException;
-import dev.academy.movieapi.domain.exception.BadRequestExceptionDetails;
-import dev.academy.movieapi.domain.exception.ExceptionDetails;
-import dev.academy.movieapi.domain.exception.ValidationExceptionDetails;
+import dev.academy.movieapi.exception.BadRequestException;
+import dev.academy.movieapi.exception.BadRequestExceptionDetails;
+import dev.academy.movieapi.exception.ExceptionDetails;
+import dev.academy.movieapi.exception.ValidationExceptionDetails;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

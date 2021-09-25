@@ -1,4 +1,4 @@
-package dev.academy.movieapi.domain.exception;
+package dev.academy.movieapi.exception;
 
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
