@@ -1,4 +1,4 @@
-package dev.academy.movieapi.exception;
+package dev.academy.movieapi.domain.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
