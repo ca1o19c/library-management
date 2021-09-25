@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Data
 @SuperBuilder
 public class ExceptionDetails {
-    private String title;
+    private String description;
     private int status;
     private LocalDateTime timeStamp;
 }
