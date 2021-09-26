@@ -1,19 +1,23 @@
 package dev.academy.movieapi.repository;
 
 import dev.academy.movieapi.domain.Movie;
+import dev.academy.movieapi.exception.BadRequestException;
 import org.junit.FixMethodOrder;
+import org.junit.Rule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.validation.ConstraintViolationException;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 @DataJpaTest
 @RunWith(SpringRunner.class)
@@ -45,13 +49,14 @@ class MovieRepositoryTest {
 
         var movies = this.movieRepository.findByName(name);
 
-        assertThat(movies).isNotEmpty();
-        assertThat(movies).contains(movieSaved);
+        assertThat(movies)
+                .isNotEmpty()
+                .contains(movieSaved);
     }
 
     @Test
     @DisplayName("should return empty list when movie is not found")
-    void shouldReturnEmptyListWhenMovieIsNotFound() {
+    void shouldNotFindByName() {
         var movies = this.movieRepository.findByName("");
 
         assertThat(movies).isEmpty();

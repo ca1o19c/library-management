@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -13,6 +15,7 @@ import java.util.Objects;
 public class Movie {
     @Id
     private String id;
+    @NotBlank(message = "The movie name cannot be empty")
     private String name;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
