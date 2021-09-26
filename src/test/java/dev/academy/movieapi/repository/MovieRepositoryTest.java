@@ -31,6 +31,7 @@ class MovieRepositoryTest {
         assertThat(movieSaved).isNotNull();
         assertThat(movieSaved.getId()).isNotNull();
         assertThat(movieSaved.getName()).isEqualTo(movieToBeSaved.getName());
+        assertThat(movieSaved.getCreatedOn()).isEqualTo(movieToBeSaved.getCreatedOn());
     }
 
     private Movie createMovie() {
