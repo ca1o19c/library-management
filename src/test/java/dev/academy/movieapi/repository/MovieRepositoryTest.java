@@ -30,6 +30,24 @@ class MovieRepositoryTest {
         assertThat(movieSaved.getCreatedOn()).isEqualTo(movieToBeSaved.getCreatedOn());
     }
 
+    @DisplayName("should update movie when successful")
+    @Test
+    void shouldUpdateOne() {
+        var movieToBeSaved = createMovie();
+        var movieSaved = this.movieRepository.save(movieToBeSaved);
+
+        movieSaved.setName("Doctor Strange");
+        movieSaved.setUpdatedOn(LocalDateTime.now());
+
+        var movieUpdated = this.movieRepository.save(movieSaved);
+
+        assertThat(movieUpdated).isNotNull();
+        assertThat(movieUpdated.getId()).isNotNull();
+        assertThat(movieUpdated.getName()).isEqualTo(movieSaved.getName());
+        assertThat(movieUpdated.getCreatedOn()).isEqualTo(movieSaved.getCreatedOn());
+        assertThat(movieUpdated.getUpdatedOn()).isEqualTo(movieSaved.getUpdatedOn());
+    }
+
     private Movie createMovie() {
         return new Movie()
                 .setId(UUID.randomUUID().toString())
