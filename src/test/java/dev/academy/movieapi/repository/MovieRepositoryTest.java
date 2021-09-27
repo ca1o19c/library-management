@@ -1,23 +1,18 @@
 package dev.academy.movieapi.repository;
 
-import dev.academy.movieapi.domain.Movie;
-import dev.academy.movieapi.exception.BadRequestException;
+import dev.academy.movieapi.mock.MovieMock;
 import org.junit.FixMethodOrder;
-import org.junit.Rule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.validation.ConstraintViolationException;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @RunWith(SpringRunner.class)
@@ -31,7 +26,7 @@ class MovieRepositoryTest {
     @Test
     @DisplayName("should create movie when successful")
     void shouldCreateOne() {
-        var movieToBeSaved = createMovie();
+        var movieToBeSaved = MovieMock.aMock();
         var movieSaved = this.movieRepository.save(movieToBeSaved);
 
         assertThat(movieSaved).isNotNull();
@@ -43,7 +38,7 @@ class MovieRepositoryTest {
     @Test
     @DisplayName("should find by name when successful")
     void shouldFindByName() {
-        var movieToBeSaved = createMovie();
+        var movieToBeSaved = MovieMock.aMock();
         var movieSaved = this.movieRepository.save(movieToBeSaved);
         var name = movieSaved.getName();
 
@@ -65,7 +60,7 @@ class MovieRepositoryTest {
     @Test
     @DisplayName("should update movie when successful")
     void shouldUpdateOne() {
-        var movieToBeSaved = createMovie();
+        var movieToBeSaved = MovieMock.aMock();
         var movieSaved = this.movieRepository.save(movieToBeSaved);
 
         movieSaved.setName("Doctor Strange");
@@ -83,7 +78,7 @@ class MovieRepositoryTest {
     @Test
     @DisplayName("should delete movie when successful")
     void shouldDeleteOne() {
-        var movieToBeSaved = createMovie();
+        var movieToBeSaved = MovieMock.aMock();
         var movieSaved = this.movieRepository.save(movieToBeSaved);
 
         this.movieRepository.delete(movieSaved);
@@ -91,12 +86,5 @@ class MovieRepositoryTest {
         var movieId = this.movieRepository.findById(movieSaved.getId());
 
         assertThat(movieId).isEmpty();
-    }
-
-    private Movie createMovie() {
-        return new Movie()
-                .setId(UUID.randomUUID().toString())
-                .setName("Spider Man")
-                .setCreatedOn(LocalDateTime.now());
     }
 }
