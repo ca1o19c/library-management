@@ -1,7 +1,7 @@
 package dev.academy.movieapi.http;
 
 import dev.academy.movieapi.domain.Movie;
-import dev.academy.movieapi.domain.dto.MovieDto;
+import dev.academy.movieapi.http.dto.MovieDto;
 import dev.academy.movieapi.service.MovieService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -2,7 +2,7 @@ package dev.academy.movieapi.service;
 
 import dev.academy.movieapi.domain.Movie;
 import dev.academy.movieapi.exception.BadRequestException;
-import dev.academy.movieapi.domain.dto.MovieDto;
+import dev.academy.movieapi.http.dto.MovieDto;
 import dev.academy.movieapi.mapper.MovieMapper;
 import dev.academy.movieapi.repository.MovieRepository;
 import org.springframework.data.domain.Page;

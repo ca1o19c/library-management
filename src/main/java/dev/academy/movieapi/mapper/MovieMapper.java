@@ -1,7 +1,7 @@
 package dev.academy.movieapi.mapper;
 
 import dev.academy.movieapi.domain.Movie;
-import dev.academy.movieapi.domain.dto.MovieDto;
+import dev.academy.movieapi.http.dto.MovieDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
