@@ -1,10 +1,8 @@
 package dev.academy.movieapi.http;
 
-import dev.academy.movieapi.domain.Movie;
 import dev.academy.movieapi.mock.MovieMock;
 import dev.academy.movieapi.service.MovieService;
 import org.junit.FixMethodOrder;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,16 +12,12 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -65,13 +59,9 @@ class MovieHttpTest {
     }
 
     @Test
-    void createOne() {
-    }
-
-    @Test
     @DisplayName("should movie find by id when successful")
     void shouldFindById() {
-        final var id= MovieMock.aMock().getId();
+        final var id = MovieMock.aMock().getId();
         final var body = movieHttp.findById("92b3c238-230d-11ec-9621-0242ac130002").getBody();
 
         assertThat(body).isNotNull();
@@ -81,7 +71,7 @@ class MovieHttpTest {
     @Test
     @DisplayName("should not movie find by id when failure")
     void shouldNotFindById() {
-        final var id= MovieMock.aMock().getId();
+        final var id = MovieMock.aMock().getId();
         final var body = movieHttp.findById("").getBody();
 
         assertThat(body).isNull();
@@ -108,13 +98,5 @@ class MovieHttpTest {
         assertThat(body)
                 .isNotNull()
                 .isEmpty();
-    }
-
-    @Test
-    void updateOne() {
-    }
-
-    @Test
-    void deleteOne() {
     }
 }
