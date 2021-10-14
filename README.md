@@ -50,15 +50,6 @@
 | :-------- | :------- | :--------------------------------- |
 | `name`    | `string` | **Required**. Id of movie to fetch |
 
-#### Delete movie
-
-```http
-  DELETE /v1/movies/${id}
-```
-
-| Parameter | Type     | Description                         |
-| :-------- | :------- | :---------------------------------- |
-| `id`      | `string` | **Required**. Id of movie to delete |
 
 #### Put movie
 
@@ -70,3 +61,14 @@
 | :-------- | :------- | :---------------------------------- |
 | `id`      | `string` | **Required**. Id of movie to fetch  |
 | `name`    | `string` | **Required**. New name to change    | 
+
+#### Delete movie
+
+```http
+  DELETE /v1/movies/${id}
+```
+
+| Parameter | Type     | Description                         |
+| :-------- | :------- | :---------------------------------- |
+| `id`      | `string` | **Required**. Id of movie to delete |
+
