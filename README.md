@@ -1,5 +1,5 @@
 
-# Movie API - :coffee:
+# Spring CRUD - :coffee:
 
 > Repositório de Estudo
 
