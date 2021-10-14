@@ -1,22 +1,72 @@
-# Getting Started
 
-### Reference Documentation
+# Movie API - :coffee:
 
-For further reference, please consider the following sections:
+> Repositório de Estudo
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.5.4/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.5.4/maven-plugin/reference/html/#build-image)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/2.5.4/reference/htmlsingle/#boot-features-developing-web-applications)
-* [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/2.5.4/reference/htmlsingle/#production-ready)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/2.5.4/reference/htmlsingle/#using-boot-devtools)
+:arrow_right: API para consolidar o meu aprendizado sobre CRUDs
 
-### Guides
+## API Reference
 
-The following guides illustrate how to use some features concretely:
+#### Get all movies
 
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
-* [Building a RESTful Web Service with Spring Boot Actuator](https://spring.io/guides/gs/actuator-service/)
+```http
+  GET /v1/movies
+```
 
+| Parameter | Type     | Description                     |
+| :-------- | :------- | :------------------------------ |
+| `size`    | `int`    | quantity per page (5)           |
+| `page`    | `int`    | choose page (0)                 |
+| `sort`    | `string` | sort page  (**desc** or **asc**)|
+
+#### Create movie
+
+```http
+  POST /v1/movies
+```
+
+| Parameter | Type     | Description                     |
+| :-------- | :------- | :------------------------------ |
+| `name`    | `string` | **Required**. movie name        |
+
+
+#### Get movie
+
+```http
+  GET /v1/movies/${id}
+```
+
+| Parameter | Type     | Description                        |
+| :-------- | :------- | :--------------------------------- |
+| `id`      | `string` | **Required**. Id of movie to fetch |
+
+#### Get movie
+
+```http
+  GET /v1/movies/${name}
+```
+
+| Parameter | Type     | Description                        |
+| :-------- | :------- | :--------------------------------- |
+| `name`    | `string` | **Required**. Id of movie to fetch |
+
+#### Delete movie
+
+```http
+  DELETE /v1/movies/${id}
+```
+
+| Parameter | Type     | Description                         |
+| :-------- | :------- | :---------------------------------- |
+| `id`      | `string` | **Required**. Id of movie to delete |
+
+#### Put movie
+
+```http
+  PUT /v1/movies/${id}
+```
+
+| Parameter | Type     | Description                         |
+| :-------- | :------- | :---------------------------------- |
+| `id`      | `string` | **Required**. Id of movie to fetch  |
+| `name`    | `string` | **Required**. New name to change    | 
