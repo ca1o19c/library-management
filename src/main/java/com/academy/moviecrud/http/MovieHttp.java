@@ -67,8 +67,8 @@ public class MovieHttp {
 
     public String createOneMovie(Movie movie) {
         movie.setCreatedOn(LocalDateTime.now());
-        var createdGroup = this.movieService.createOne(movie);
-        return createdGroup.getId();
+        var createAtMongo = this.movieService.createOne(movie);
+        return createAtMongo.getId();
     }
 
     private URI getLocation(String id) {
