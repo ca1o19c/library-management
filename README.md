@@ -1,5 +1,5 @@
 
-# Spring CRUD - :coffee:
+# Movie CRUD - :coffee:
 
 > Repositório de Estudo
 
