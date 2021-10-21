@@ -32,6 +32,7 @@ public class MoviePayload {
         return new MoviePayload()
                 .setId(entity.getId())
                 .setTitle(entity.getTitle())
+                .setImdbRating(entity.getImdbRating())
                 .setDirectors(entity.getDirectors())
                 .setCreatedOn(entity.getCreatedOn())
                 .setUpdatedOn(entity.getUpdatedOn());

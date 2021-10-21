@@ -1,8 +1,8 @@
 package com.academy.moviecrud.service;
 
 import com.academy.moviecrud.domain.Movie;
+import com.academy.moviecrud.http.MoviePayload;
 import com.academy.moviecrud.http.dto.SearchResponseDto;
-import com.academy.moviecrud.domain.SortType;
 import com.academy.moviecrud.http.dto.MovieSearchQueryDto;
 import com.academy.moviecrud.repository.MovieRepository;
 import org.springframework.data.domain.PageRequest;
@@ -39,8 +39,6 @@ public class MovieService {
 
         var query = this.buildQuery(queryDto);
 
-        int page = queryDto.getPage();
-
         int total = Math.toIntExact(mongoTemplate.count(query, ENTITY_CLASS));
 
         int limit = queryDto.getPerPage();
@@ -48,18 +46,22 @@ public class MovieService {
         var totalPages = total > limit ? Math.floorDiv(total, limit) : 1;
 
         var direction = Sort.Direction.fromString(isEmpty(queryDto.getDir())
-                ? SortType.ASC.getValue()
-                : queryDto.getDir().getValue());
+                ? "ASC"
+                : queryDto.getDir());
 
-        query.with(PageRequest.of(page, limit, Sort.by(direction, "createdAt")));
+        var sort = Sort.by(direction, SORT_PROPERTY);
+        var pageRequest = PageRequest.of(queryDto.getPage(), limit, sort);
 
-        var orders = mongoTemplate.find(query, ENTITY_CLASS);
+        query.with(pageRequest);
 
-        return new SearchResponseDto<>(total, totalPages, orders);
-    }
+        var movies = mongoTemplate.find(query, ENTITY_CLASS);
 
-    private int getTotalPages(int total, int limit) {
-        return total > limit ? Math.floorDiv(total, limit) : 1;
+        return new SearchResponseDto<Movie>()
+                .setPage(queryDto.getPage())
+                .setPerPage(queryDto.getPerPage())
+                .setTotal(total)
+                .setTotalPages(totalPages)
+                .setResult(movies);
     }
 
     private Query buildQuery(MovieSearchQueryDto queryDto) {
@@ -95,5 +97,9 @@ public class MovieService {
         return localDate == null ? null : localDate.atTime(LocalTime.MAX)
                 .atZone(ZoneId.of("UTC"))
                 .toInstant();
+    }
+
+    public Movie createOne(Movie movie) {
+        return this.repository.save(movie.created());
     }
 }
