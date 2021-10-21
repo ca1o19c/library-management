@@ -1,7 +1,6 @@
 package com.academy.moviecrud.http;
 
 import com.academy.moviecrud.http.dto.PageDto;
-import com.academy.moviecrud.domain.SortType;
 import com.academy.moviecrud.http.dto.MovieSearchQueryDto;
 import com.academy.moviecrud.service.MovieService;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -31,7 +30,7 @@ public class MovieHttp {
     public ResponseEntity<PageDto<MoviePayload>> findAll(
             @RequestParam(value = "page", defaultValue = "0", required = false) @PositiveOrZero Integer page,
             @RequestParam(value = "per_page", defaultValue = "50", required = false) Integer perPage,
-            @RequestParam(value = "dir", defaultValue = "ASC", required = false) SortType direction,
+            @RequestParam(value = "dir", defaultValue = "ASC", required = false) String direction,
             @RequestParam(value = "initial_date", required = false)
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate initialDate,
             @RequestParam(value = "final_date", required = false)

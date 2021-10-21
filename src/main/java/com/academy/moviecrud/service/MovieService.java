@@ -2,7 +2,6 @@ package com.academy.moviecrud.service;
 
 import com.academy.moviecrud.domain.Movie;
 import com.academy.moviecrud.http.dto.SearchResponseDto;
-import com.academy.moviecrud.domain.SortType;
 import com.academy.moviecrud.http.dto.MovieSearchQueryDto;
 import com.academy.moviecrud.repository.MovieRepository;
 import org.springframework.data.domain.PageRequest;
@@ -48,8 +47,8 @@ public class MovieService {
         var totalPages = total > limit ? Math.floorDiv(total, limit) : 1;
 
         var direction = Sort.Direction.fromString(isEmpty(queryDto.getDir())
-                ? SortType.ASC.getValue()
-                : queryDto.getDir().getValue());
+                ? "ASC"
+                : queryDto.getDir());
 
         query.with(PageRequest.of(page, limit, Sort.by(direction, "createdAt")));
 

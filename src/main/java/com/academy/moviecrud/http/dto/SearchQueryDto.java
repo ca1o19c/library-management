@@ -1,10 +1,7 @@
 package com.academy.moviecrud.http.dto;
 
 import com.academy.moviecrud.domain.SelfValidator;
-import com.academy.moviecrud.domain.SortType;
 import com.academy.moviecrud.exception.BadRequestException;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
@@ -14,7 +11,7 @@ import java.time.LocalDate;
 
 import static java.util.Objects.isNull;
 
-@JsonNaming(SnakeCaseStrategy.class)
+@Valid
 public abstract class SearchQueryDto<T> extends SelfValidator<T> {
     @PositiveOrZero
     protected final Integer page;
@@ -24,7 +21,7 @@ public abstract class SearchQueryDto<T> extends SelfValidator<T> {
     protected final Integer perPage;
 
     @Valid
-    protected final SortType dir;
+    protected final String dir;
 
     protected final LocalDate initialDate;
 
@@ -32,7 +29,7 @@ public abstract class SearchQueryDto<T> extends SelfValidator<T> {
 
     public SearchQueryDto(@PositiveOrZero Integer page,
                           @Min(1) @Max(50) Integer perPage,
-                          @Valid SortType dir, LocalDate initialDate, LocalDate finalDate) {
+                          @Valid String dir, LocalDate initialDate, LocalDate finalDate) {
         this.page = page;
         this.perPage = perPage;
         this.dir = dir;
@@ -48,7 +45,7 @@ public abstract class SearchQueryDto<T> extends SelfValidator<T> {
         return perPage;
     }
 
-    public SortType getDir() {
+    public String getDir() {
         return dir;
     }
 

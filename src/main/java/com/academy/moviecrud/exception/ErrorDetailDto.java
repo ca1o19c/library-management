@@ -1,14 +1,14 @@
 package com.academy.moviecrud.exception;
 
-public class ErrorDetailDTO {
+public class ErrorDetailDto {
 
     private String item;
     private String description;
 
-    public ErrorDetailDTO() {
+    public ErrorDetailDto() {
     }
 
-    public ErrorDetailDTO(String item, String description) {
+    public ErrorDetailDto(String item, String description) {
         this.item = item;
         this.description = description;
     }
