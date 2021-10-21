@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-@Document(collation = "movie-crud-movies")
+@Document(collection = "movie-crud-movies")
 public class Movie {
     @Id
     private String id;

@@ -1,4 +1,4 @@
-package com.academy.moviecrud.http.dto;
+package com.academy.moviecrud.http;
 
 import com.academy.moviecrud.domain.Movie;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
