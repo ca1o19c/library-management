@@ -1,17 +1,22 @@
 server:
-  error:
-    include-stacktrace: on_param
-spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/movies?useSSL=false&createDatabaseIfNotExist=true
-    username: root
-    password: root
-  jpa:
-    hibernate:
-      ddl-auto: update
+  port: 8080
 
 logging:
   level:
-    org:
-      hibernate:
-        SQL: DEBUG
+    org.springframework:
+      web:
+        client:
+          RestTemplate: debug
+
+spring:
+  main:
+    banner-mode: "off"
+  jackson:
+    mapper:
+      ACCEPT_CASE_INSENSITIVE_ENUMS: true
+    deserialization:
+      ACCEPT_FLOAT_AS_INT: false
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/movie-crud
+      database: movie-crud
