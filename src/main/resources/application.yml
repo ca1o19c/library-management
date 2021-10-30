@@ -7,6 +7,13 @@ logging:
       web:
         client:
           RestTemplate: debug
+      data:
+        mongodb:
+          core:
+            MongoTemplate: DEBUG
+          repository:
+              Query: DEBUG
+
 spring:
   main:
     banner-mode: "off"
