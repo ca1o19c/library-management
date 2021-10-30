@@ -1,6 +1,6 @@
 package com.academy.librarymanagement.services;
 
-import com.academy.librarymanagement.domain.Library;
+import com.academy.librarymanagement.domain.Book;
 import com.academy.librarymanagement.infra.data.LibraryRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +15,11 @@ public class LibraryService {
         this.libraryRepository = libraryRepository;
     }
 
-    public Page<Library> findAll(Pageable pageable) {
+    public Page<Book> findAll(Pageable pageable) {
         return libraryRepository.findAll(pageable);
+    }
+
+    public Book createOne(Book book) {
+        return this.libraryRepository.save(book.created());
     }
 }

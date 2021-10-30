@@ -1,5 +1,7 @@
 package com.academy.librarymanagement.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
@@ -7,7 +9,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-public class LibraryDto {
+import static com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy;
+
+@JsonNaming(SnakeCaseStrategy.class)
+public class BookDto {
     private String id;
 
     @NotBlank
@@ -26,8 +31,8 @@ public class LibraryDto {
 
     private LocalDateTime createdOn;
 
-    public static LibraryDto from(Library entity) {
-        return new LibraryDto()
+    public static BookDto from(Book entity) {
+        return new BookDto()
                 .setId(entity.getId())
                 .setTitle(entity.getTitle())
                 .setImage(entity.getImage())
@@ -41,7 +46,7 @@ public class LibraryDto {
         return id;
     }
 
-    public LibraryDto setId(String id) {
+    public BookDto setId(String id) {
         this.id = id;
         return this;
     }
@@ -50,7 +55,7 @@ public class LibraryDto {
         return title;
     }
 
-    public LibraryDto setTitle(String title) {
+    public BookDto setTitle(String title) {
         this.title = title;
         return this;
     }
@@ -59,7 +64,7 @@ public class LibraryDto {
         return image;
     }
 
-    public LibraryDto setImage(String image) {
+    public BookDto setImage(String image) {
         this.image = image;
         return this;
     }
@@ -68,7 +73,7 @@ public class LibraryDto {
         return publisher;
     }
 
-    public LibraryDto setPublisher(String publisher) {
+    public BookDto setPublisher(String publisher) {
         this.publisher = publisher;
         return this;
     }
@@ -79,7 +84,7 @@ public class LibraryDto {
                 .orElse(List.of());
     }
 
-    public LibraryDto setWriters(List<String> writers) {
+    public BookDto setWriters(List<String> writers) {
         this.writers = writers;
         return this;
     }
@@ -88,7 +93,7 @@ public class LibraryDto {
         return updatedOn;
     }
 
-    public LibraryDto setUpdatedOn(LocalDateTime updatedOn) {
+    public BookDto setUpdatedOn(LocalDateTime updatedOn) {
         this.updatedOn = updatedOn;
         return this;
     }
@@ -97,13 +102,13 @@ public class LibraryDto {
         return createdOn;
     }
 
-    public LibraryDto setCreatedOn(LocalDateTime createdOn) {
+    public BookDto setCreatedOn(LocalDateTime createdOn) {
         this.createdOn = createdOn;
         return this;
     }
 
-    public Library toEntity() {
-        return new Library()
+    public Book toEntity() {
+        return new Book()
                 .setTitle(title)
                 .setImage(image)
                 .setPublisher(publisher)

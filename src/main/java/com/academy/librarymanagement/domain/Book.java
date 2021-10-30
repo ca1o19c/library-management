@@ -10,7 +10,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Document(collection = "library-management")
-public class Library {
+public class Book {
     @Id
     private String id;
 
@@ -30,7 +30,7 @@ public class Library {
         return id;
     }
 
-    public Library setId(String id) {
+    public Book setId(String id) {
         this.id = id;
         return this;
     }
@@ -39,7 +39,7 @@ public class Library {
         return title;
     }
 
-    public Library setTitle(String title) {
+    public Book setTitle(String title) {
         this.title = title;
         return this;
     }
@@ -48,7 +48,7 @@ public class Library {
         return publisher;
     }
 
-    public Library setPublisher(String publisher) {
+    public Book setPublisher(String publisher) {
         this.publisher = publisher;
         return this;
     }
@@ -57,7 +57,7 @@ public class Library {
         return image;
     }
 
-    public Library setImage(String image) {
+    public Book setImage(String image) {
         this.image = image;
         return this;
     }
@@ -68,7 +68,7 @@ public class Library {
                 .orElse(List.of());
     }
 
-    public Library setWriters(List<String> writers) {
+    public Book setWriters(List<String> writers) {
         this.writers = writers;
         return this;
     }
@@ -77,7 +77,7 @@ public class Library {
         return updatedOn;
     }
 
-    public Library setUpdatedOn(LocalDateTime updatedOn) {
+    public Book setUpdatedOn(LocalDateTime updatedOn) {
         this.updatedOn = updatedOn;
         return this;
     }
@@ -86,20 +86,20 @@ public class Library {
         return createdOn;
     }
 
-    public Library setCreatedOn(LocalDateTime createdOn) {
+    public Book setCreatedOn(LocalDateTime createdOn) {
         this.createdOn = createdOn;
         return this;
     }
 
-    public Library created() {
+    public Book created() {
         this.createdOn = LocalDateTime.now();
         return this;
     }
 
-    public Library updated(Library library) {
-        this.title = library.getTitle();
-        this.publisher = library.getPublisher();
-        this.writers = library.getWriters();
+    public Book updated(Book book) {
+        this.title = book.getTitle();
+        this.publisher = book.getPublisher();
+        this.writers = book.getWriters();
         this.updatedOn = LocalDateTime.now();
         return this;
     }
@@ -108,8 +108,8 @@ public class Library {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Library library = (Library) o;
-        return Objects.equals(id, library.id) && Objects.equals(title, library.title) && Objects.equals(publisher, library.publisher) && Objects.equals(image, library.image) && Objects.equals(writers, library.writers) && Objects.equals(updatedOn, library.updatedOn) && Objects.equals(createdOn, library.createdOn);
+        Book book = (Book) o;
+        return Objects.equals(id, book.id) && Objects.equals(title, book.title) && Objects.equals(publisher, book.publisher) && Objects.equals(image, book.image) && Objects.equals(writers, book.writers) && Objects.equals(updatedOn, book.updatedOn) && Objects.equals(createdOn, book.createdOn);
     }
 
     @Override
