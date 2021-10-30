@@ -1,6 +1,5 @@
-package com.academy.moviecrud.http;
+package com.academy.librarymanagement.domain;
 
-import com.academy.moviecrud.domain.Movie;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import javax.validation.constraints.NotBlank;
@@ -13,27 +12,32 @@ import java.util.Optional;
 import static com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy;
 
 @JsonNaming(SnakeCaseStrategy.class)
-public class MoviePayload {
-
+public class BookDto {
     private String id;
 
+    @NotBlank
     private String title;
 
-    private Double imdbRating;
+    @NotBlank
+    public String image;
+
+    @NotBlank
+    private String publisher;
 
     @NotEmpty
-    private List<@NotBlank String> directors;
+    private List<@NotBlank String> writers;
 
     private LocalDateTime updatedOn;
 
     private LocalDateTime createdOn;
 
-    public static MoviePayload from(Movie entity) {
-        return new MoviePayload()
+    public static BookDto from(Book entity) {
+        return new BookDto()
                 .setId(entity.getId())
                 .setTitle(entity.getTitle())
-                .setImdbRating(entity.getImdbRating())
-                .setDirectors(entity.getDirectors())
+                .setImage(entity.getImage())
+                .setPublisher(entity.getPublisher())
+                .setWriters(entity.getWriters())
                 .setCreatedOn(entity.getCreatedOn())
                 .setUpdatedOn(entity.getUpdatedOn());
     }
@@ -42,7 +46,7 @@ public class MoviePayload {
         return id;
     }
 
-    public MoviePayload setId(String id) {
+    public BookDto setId(String id) {
         this.id = id;
         return this;
     }
@@ -51,28 +55,37 @@ public class MoviePayload {
         return title;
     }
 
-    public MoviePayload setTitle(String title) {
+    public BookDto setTitle(String title) {
         this.title = title;
         return this;
     }
 
-    public Double getImdbRating() {
-        return imdbRating;
+    public String getImage() {
+        return image;
     }
 
-    public MoviePayload setImdbRating(Double imdbRating) {
-        this.imdbRating = imdbRating;
+    public BookDto setImage(String image) {
+        this.image = image;
         return this;
     }
 
-    public List<String> getDirectors() {
-        return Optional.ofNullable(directors)
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public BookDto setPublisher(String publisher) {
+        this.publisher = publisher;
+        return this;
+    }
+
+    public List<String> getWriters() {
+        return Optional.ofNullable(writers)
                 .map(Collections::unmodifiableList)
                 .orElse(List.of());
     }
 
-    public MoviePayload setDirectors(List<String> directors) {
-        this.directors = directors;
+    public BookDto setWriters(List<String> writers) {
+        this.writers = writers;
         return this;
     }
 
@@ -80,7 +93,7 @@ public class MoviePayload {
         return updatedOn;
     }
 
-    public MoviePayload setUpdatedOn(LocalDateTime updatedOn) {
+    public BookDto setUpdatedOn(LocalDateTime updatedOn) {
         this.updatedOn = updatedOn;
         return this;
     }
@@ -89,15 +102,16 @@ public class MoviePayload {
         return createdOn;
     }
 
-    public MoviePayload setCreatedOn(LocalDateTime createdOn) {
+    public BookDto setCreatedOn(LocalDateTime createdOn) {
         this.createdOn = createdOn;
         return this;
     }
 
-    public Movie toEntity() {
-        return new Movie()
+    public Book toEntity() {
+        return new Book()
                 .setTitle(title)
-                .setDirectors(directors)
-                .setImdbRating(imdbRating);
+                .setImage(image)
+                .setPublisher(publisher)
+                .setWriters(writers);
     }
 }

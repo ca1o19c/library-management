@@ -1,10 +1,10 @@
-package com.academy.moviecrud;
+package com.academy.librarymanagement;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MovieCrudApplicationTests {
+class LibraryManagementApplicationTests {
 
 	@Test
 	void contextLoads() {

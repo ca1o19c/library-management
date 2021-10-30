@@ -1,13 +1,13 @@
-package com.academy.moviecrud;
+package com.academy.librarymanagement;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MovieCrudApplication {
+public class LibraryManagementApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MovieCrudApplication.class, args);
+		SpringApplication.run(LibraryManagementApplication.class, args);
 	}
 
 }
