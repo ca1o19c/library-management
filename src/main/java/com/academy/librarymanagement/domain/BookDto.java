@@ -15,16 +15,16 @@ import static com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStr
 public class BookDto {
     private String id;
 
-    @NotBlank
+    @NotBlank(message = "The title cannot be blank")
     private String title;
 
-    @NotBlank
+    @NotBlank(message = "The image url cannot be blank")
     public String image;
 
-    @NotBlank
+    @NotBlank(message = "The publisher name cannot be blank")
     private String publisher;
 
-    @NotEmpty
+    @NotEmpty(message = "The writers name cannot be empty")
     private List<@NotBlank String> writers;
 
     private LocalDateTime updatedOn;
