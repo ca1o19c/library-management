@@ -3,16 +3,12 @@ server:
 
 logging:
   level:
-    org.springframework:
-      web:
-        client:
-          RestTemplate: debug
-      data:
-        mongodb:
-          core:
-            MongoTemplate: DEBUG
-          repository:
-              Query: DEBUG
+    data:
+      mongodb:
+        core:
+          MongoTemplate: DEBUG
+        repository:
+            Query: DEBUG
 
 spring:
   main:
