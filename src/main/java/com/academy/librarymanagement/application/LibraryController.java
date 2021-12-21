@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("library-management/v1/books")
@@ -35,5 +37,10 @@ public class LibraryController {
         var id = this.libraryActions.createOneBook(bookDto.toEntity());
         var location = this.libraryActions.getLocation(id);
         return ResponseEntity.created(location).build();
+    }
+
+    @GetMapping(path = "{id}")
+    public ResponseEntity<Book> findOne(@PathVariable String id) {
+        return ResponseEntity.ok(libraryService.findOne(id));
     }
 }
