@@ -25,7 +25,7 @@ public class BookDto {
     private String publisher;
 
     @NotEmpty(message = "The writers name cannot be empty")
-    private List<@NotBlank String> writers;
+    private List<@NotBlank(message = "Field cannot be blank") String> writers;
 
     private LocalDateTime updatedOn;
 
