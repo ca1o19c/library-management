@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@Validated
 @RequestMapping("library-management/v1/books")
 public class LibraryController {
 
