@@ -1,11 +1,11 @@
 package com.academy.librarymanagement.infra.crosscutting.exception;
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import static com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import java.util.List;
 
-@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
+@JsonNaming(SnakeCaseStrategy.class)
 public class ErrorResponse {
     private final String message;
     private final int code;
