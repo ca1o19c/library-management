@@ -4,7 +4,7 @@ import com.academy.librarymanagement.mock.BookMock;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DisplayName("Book Test")
@@ -23,13 +23,10 @@ class BookDomainTest {
     void shouldRetrieveUpdatedDateTimeAndData() {
         var bookMock = BookMock.aMock();
 
-        var updatedDateTime = book.updated(bookMock);
+        var updatedDateTime = bookMock.updated(bookMock);
 
-        assertNotNull(updatedDateTime.getUpdatedOn());
-
-        assertEquals("Harry Potter", bookMock.getTitle());
-        assertEquals("Rocco", bookMock.getPublisher());
-        assertEquals("https://i.imgur.com/UH3IPXw.jpg", bookMock.getImage());
-        assertEquals("JK Rowling", bookMock.getWriters().get(0));
+        assertThat(updatedDateTime)
+                .isNotNull()
+                .isEqualTo(bookMock);
     }
 }
