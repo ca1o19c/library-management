@@ -4,10 +4,9 @@
  <br />
   <p align="center">
         library management system
-           <br />
-           <br />
+      <br />
+      <br />
         <img src="https://github.com/ca1o19c/library-management/actions/workflows/ci.yml/badge.svg" alt="Logo" width="200">
-
        <br />
     <br />
   </p>
