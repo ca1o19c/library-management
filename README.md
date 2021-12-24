@@ -12,32 +12,44 @@
   </p>
 </p>
 
-## Índice
-
-* [Desafio](#desafio)
+* [Challenge](#challenge)
 * [Techs](#techs)
-* [Como começar](#como-começar)
-* [Compartilhe](#compartilhe)
+* [How to begin](#how-to-begin)
 
 # Devchallenge
-<a href="https://devchallenge.now.sh/"> DevChallenge</a> permite que você evolua suas skills como programador! Participe da nossa <a href="https://discord.gg/yvYXhGj">comunidade</a> o/
+<a href="https://devchallenge.now.sh/"> DevChallenge</a> allows you to develop your skills as a programmer! join our
+<a href="https://discord.gg/yvYXhGj">community</a> o/
 
-# Desafio
-Seu desafio é criar o backend para um sistema de gerenciamento de uma biblioteca!
+# challenge
+Build the backend for a library management system!
 
 ## Requisitos:
 ### Rotas da aplicação:
-<b>[POST] </b> /obras :  A rota deverá receber titulo, editora, foto, e autores dentro do corpo da requisição. Ao cadastrar um novo projeto, ele deverá ser armazenado dentro de um objeto no seguinte formato: { id: 1, titulo: 'Harry Potter', editora: 'Rocco',foto: 'https://i.imgur.com/UH3IPXw.jpg', autores: ["JK Rowling", "..."]};<br><br>
-<b>[GET] </b> /obras/ : A rota deverá listar todas as obras cadastradas<br><br>
-<b>[PUT] </b> /obras/:id: : A rota deverá atualizar as informações de titulo, editora, foto e autores da obra com o id presente nos parâmetros da rota<br><br>
-<b>[DELETE] </b> /obras/:id: : A rota deverá deletar a obra com o id presente nos parâmetros da rota<br>
+<b>[POST] </b> /books : The route must include title, publisher, image and writers within the body of the requisition. When registering a new book, it must be stored inside an object in the following format:
+```
+{
+    "id": "61c5b77b08df532632ca806d",
+    "title": "Harry Potter",
+    "image": "https://i.imgur.com/UH3IPXw.jpg",
+    "publisher": "Rocco",
+    "writers": [
+        "JK Rowling"
+    ],
+    "updated_on": "2021-12-24T13:58:14.656",
+    "created_on": "2021-12-24T09:05:15.045"
+}
+```
+<br><br>
+<b>[GET] </b> /books/ : The route must list all registered books<br><br>
+<b>[PUT] </b> /books/:id: : The route must update the title, publisher, image and information of the writers of the book with the id present in the route parameters<br><br>
+<b>[DELETE] </b> /books/:id: :The route must delete the book with the id present in the route parameters<br>
 
 
-# Techs: 
+# techs:
 - Tecnologia que preferir :)
 
-# Como começar:
-1 - Use esse template (clicando em Use this template) ou faça um fork deste repositório com o código inicial<br>
-2 - Leia as instruções no readme.md<br>
-3 - Comece a codar! Sinta-se livre para utilizar o fluxo de trabalho que ache mais confortável<br>
-4 - Compartilhe seu resultado com a comunidade! #devchallenge
+# How to begin:
+1 - Use this template (by clicking Use this template) or fork this repository with the initial code<br>
+2 - Read the instructions at readme.md<br>
+3 - Start coding! Feel free to use whatever workflow you find most comfortable<br>
+4 - Share your result with the community! #devchallenge
