@@ -17,15 +17,21 @@
 * [How to begin](#how-to-begin)
 
 # Devchallenge
+
 <a href="https://devchallenge.now.sh/"> DevChallenge</a> allows you to develop your skills as a programmer! join our
 <a href="https://discord.gg/yvYXhGj">community</a> o/
 
 # challenge
+
 Build the backend for a library management system!
 
 ## Requisitos:
+
 ### Rotas da aplicação:
-<b>[POST] </b> /books : The route must include title, publisher, image and writers within the body of the requisition. When registering a new book, it must be stored inside an object in the following format:
+
+<b>[POST] </b> /books : The route must include title, publisher, image and writers within the body of the requisition.
+When registering a new book, it must be stored inside an object in the following format:
+
 ```
 {
     "id": "61c5b77b08df532632ca806d",
@@ -39,16 +45,19 @@ Build the backend for a library management system!
     "created_on": "2021-12-24T09:05:15.045"
 }
 ```
+
 <br><br>
 <b>[GET] </b> /books/ : The route must list all registered books<br><br>
-<b>[PUT] </b> /books/:id: : The route must update the title, publisher, image and information of the writers of the book with the id present in the route parameters<br><br>
+<b>[PUT] </b> /books/:id: : The route must update the title, publisher, image and information of the writers of the book
+with the id present in the route parameters<br><br>
 <b>[DELETE] </b> /books/:id: :The route must delete the book with the id present in the route parameters<br>
 
-
 # techs:
+
 - Tecnologia que preferir :)
 
 # How to begin:
+
 1 - Use this template (by clicking Use this template) or fork this repository with the initial code<br>
 2 - Read the instructions at readme.md<br>
 3 - Start coding! Feel free to use whatever workflow you find most comfortable<br>
