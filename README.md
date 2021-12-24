@@ -21,13 +21,13 @@
 <a href="https://devchallenge.now.sh/"> DevChallenge</a> allows you to develop your skills as a programmer! join our
 <a href="https://discord.gg/yvYXhGj">community</a> o/
 
-# challenge
+# Challenge
 
 Build the backend for a library management system!
 
-## Requisitos:
+## Requirements:
 
-### Rotas da aplicação:
+### Routes:
 
 <b>[POST] </b> /books : The route must include title, publisher, image and writers within the body of the requisition.
 When registering a new book, it must be stored inside an object in the following format:
