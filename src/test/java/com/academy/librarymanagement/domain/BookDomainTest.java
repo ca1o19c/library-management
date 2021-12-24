@@ -23,7 +23,7 @@ class BookDomainTest {
     void shouldRetrieveUpdatedDateTimeAndData() {
         var bookMock = BookMock.aMock();
 
-        var updatedDateTime = bookMock.updated(bookMock);
+        var updatedDateTime = bookMock.update(bookMock);
 
         assertThat(updatedDateTime)
                 .isNotNull()
