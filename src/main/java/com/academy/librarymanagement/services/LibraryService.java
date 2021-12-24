@@ -3,11 +3,9 @@ package com.academy.librarymanagement.services;
 import com.academy.librarymanagement.domain.Book;
 import com.academy.librarymanagement.infra.crosscutting.exception.BookNotFoundException;
 import com.academy.librarymanagement.infra.data.LibraryRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.List;
 
 @Service
 public class LibraryService {
@@ -18,8 +16,8 @@ public class LibraryService {
         this.libraryRepository = libraryRepository;
     }
 
-    public Page<Book> findAll(Pageable pageable) {
-        return libraryRepository.findAll(pageable);
+    public List<Book> findAll() {
+        return libraryRepository.findAll();
     }
 
     public Book createOne(Book book) {
@@ -27,6 +25,10 @@ public class LibraryService {
     }
 
     public Book findOne(String id) {
-        return this.libraryRepository.findById(id).orElseThrow(BookNotFoundException::new);
+        return this.libraryRepository.findById(id).orElseThrow(() -> new BookNotFoundException("Book not found"));
+    }
+
+    public Book findByTitle(String title) {
+        return this.libraryRepository.findByTitle(title).orElseThrow(() -> new BookNotFoundException("Book titled " + title + " not found"));
     }
 }

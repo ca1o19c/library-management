@@ -3,6 +3,7 @@ package com.academy.librarymanagement.infra.crosscutting.exception;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,11 +24,24 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errorResponse, status);
     }
 
+    @Override
+    protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        var errorResponse = new NotFoundExceptionResponse(new Date(), status.value(), ex.getMessage());
+        return new ResponseEntity<>(errorResponse, status);
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        var errorResponse = new NotFoundExceptionResponse(new Date(), status.value(), ex.getMessage());
+        return new ResponseEntity<>(errorResponse, status);
+    }
+
     @ExceptionHandler(BookNotFoundException.class)
     protected ResponseEntity<Object> bookNotFound(BookNotFoundException ex) {
-        var errorResponse = new NotFoundExceptionResponse(new Date(), HttpStatus.NOT_FOUND.value(), "Book not found");
+        var errorResponse = new NotFoundExceptionResponse(new Date(), HttpStatus.NOT_FOUND.value(), ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
+
 
     private ErrorResponse getErrorResponse(MethodArgumentNotValidException ex, HttpStatus status, List<ErrorObject> errors) {
         return new ErrorResponse("Request has invalid fields", status.value(),
