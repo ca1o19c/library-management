@@ -24,11 +24,20 @@ public class LibraryService {
         return this.libraryRepository.save(book.created());
     }
 
-    public Book findOne(String id) {
-        return this.libraryRepository.findById(id).orElseThrow(() -> new BookNotFoundException("Book not found"));
+    public void update(Book book, String id) {
+        var foundGroup = this.findById(id);
+
+        foundGroup.update(book);
+
+        this.libraryRepository.save(foundGroup);
     }
 
-    public Book findByTitle(String title) {
-        return this.libraryRepository.findByTitle(title).orElseThrow(() -> new BookNotFoundException("Book titled " + title + " not found"));
+    public Book findById(String id) {
+        return this.libraryRepository.findById(id)
+                .orElseThrow(() -> new BookNotFoundException("Book not found"));
+    }
+
+    public List<Book> findByTitle(String title) {
+        return this.libraryRepository.findByTitle(title);
     }
 }

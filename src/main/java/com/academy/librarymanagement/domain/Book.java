@@ -96,9 +96,10 @@ public class Book {
         return this;
     }
 
-    public Book updated(Book book) {
+    public Book update(Book book) {
         this.title = book.getTitle();
         this.publisher = book.getPublisher();
+        this.image = book.getImage();
         this.writers = book.getWriters();
         this.updatedOn = LocalDateTime.now();
         return this;
