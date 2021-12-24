@@ -25,10 +25,10 @@ public class LibraryService {
     }
 
     public Book findOne(String id) {
-        return this.libraryRepository.findById(id).orElseThrow(BookNotFoundException::new);
+        return this.libraryRepository.findById(id).orElseThrow(() -> new BookNotFoundException("Book not found"));
     }
 
     public Book findByTitle(String title) {
-        return this.libraryRepository.findByTitle(title).orElseThrow(BookNotFoundException::new);
+        return this.libraryRepository.findByTitle(title).orElseThrow(() -> new BookNotFoundException("Book titled " + title + " not found"));
     }
 }
