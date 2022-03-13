@@ -4,26 +4,18 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Document(collection = "library-management")
 public class Book {
     @Id
     private String id;
-
     public String title;
-
     public String publisher;
-
     public String image;
-
     public List<String> writers;
-
     private LocalDateTime updatedOn;
-
     private LocalDateTime createdOn;
 
     public String getId() {
