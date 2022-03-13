@@ -30,7 +30,7 @@ Build the backend for a library management system!
 ### Routes:
 
 <b>[POST] </b> /books : The route must include title, publisher, image and writers within the body of the requisition.
-When registering a new book, it must be stored inside an object in the following format:
+When registering a new bookAggregate, it must be stored inside an object in the following format:
 
 ```
 {
@@ -48,9 +48,9 @@ When registering a new book, it must be stored inside an object in the following
 
 <br><br>
 <b>[GET] </b> /books/ : The route must list all registered books<br><br>
-<b>[PUT] </b> /books/:id: : The route must update the title, publisher, image and information of the writers of the book
+<b>[PUT] </b> /books/:id: : The route must update the title, publisher, image and information of the writers of the bookAggregate
 with the id present in the route parameters<br><br>
-<b>[DELETE] </b> /books/:id: :The route must delete the book with the id present in the route parameters<br>
+<b>[DELETE] </b> /books/:id: :The route must delete the bookAggregate with the id present in the route parameters<br>
 
 # techs:
 

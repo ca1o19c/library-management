@@ -1,6 +1,6 @@
-package com.academy.librarymanagement.domain;
+package com.academy.librarymanagement.adapters.in.dto;
 
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import com.academy.librarymanagement.adapters.out.Book;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -9,18 +9,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy;
-
-@JsonNaming(SnakeCaseStrategy.class)
-public class BookDto {
-    private String id;
-
-    @NotBlank(message = "The title cannot be blank")
-    private String title;
-
+public class BookRequest {
     @NotBlank(message = "The image url cannot be blank")
     public String image;
-
+    private String id;
+    @NotBlank(message = "The title cannot be blank")
+    private String title;
     @NotBlank(message = "The publisher name cannot be blank")
     private String publisher;
 
@@ -31,8 +25,8 @@ public class BookDto {
 
     private LocalDateTime createdOn;
 
-    public static BookDto from(Book entity) {
-        return new BookDto()
+    public static BookRequest from(Book entity) {
+        return new BookRequest()
                 .setId(entity.getId())
                 .setTitle(entity.getTitle())
                 .setImage(entity.getImage())
@@ -46,7 +40,7 @@ public class BookDto {
         return id;
     }
 
-    public BookDto setId(String id) {
+    public BookRequest setId(String id) {
         this.id = id;
         return this;
     }
@@ -55,7 +49,7 @@ public class BookDto {
         return title;
     }
 
-    public BookDto setTitle(String title) {
+    public BookRequest setTitle(String title) {
         this.title = title;
         return this;
     }
@@ -64,7 +58,7 @@ public class BookDto {
         return image;
     }
 
-    public BookDto setImage(String image) {
+    public BookRequest setImage(String image) {
         this.image = image;
         return this;
     }
@@ -73,7 +67,7 @@ public class BookDto {
         return publisher;
     }
 
-    public BookDto setPublisher(String publisher) {
+    public BookRequest setPublisher(String publisher) {
         this.publisher = publisher;
         return this;
     }
@@ -84,7 +78,7 @@ public class BookDto {
                 .orElse(List.of());
     }
 
-    public BookDto setWriters(List<String> writers) {
+    public BookRequest setWriters(List<String> writers) {
         this.writers = writers;
         return this;
     }
@@ -93,7 +87,7 @@ public class BookDto {
         return updatedOn;
     }
 
-    public BookDto setUpdatedOn(LocalDateTime updatedOn) {
+    public BookRequest setUpdatedOn(LocalDateTime updatedOn) {
         this.updatedOn = updatedOn;
         return this;
     }
@@ -102,16 +96,8 @@ public class BookDto {
         return createdOn;
     }
 
-    public BookDto setCreatedOn(LocalDateTime createdOn) {
+    public BookRequest setCreatedOn(LocalDateTime createdOn) {
         this.createdOn = createdOn;
         return this;
-    }
-
-    public Book toEntity() {
-        return new Book()
-                .setTitle(title)
-                .setImage(image)
-                .setPublisher(publisher)
-                .setWriters(writers);
     }
 }

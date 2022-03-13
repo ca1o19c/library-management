@@ -1,4 +1,4 @@
-package com.academy.librarymanagement.infra.crosscutting.exception;
+package com.academy.librarymanagement.adapters.config.exception;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;

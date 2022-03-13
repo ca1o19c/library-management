@@ -1,4 +1,4 @@
-package com.academy.librarymanagement.domain;
+package com.academy.librarymanagement.adapters.out;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -30,65 +30,56 @@ public class Book {
         return id;
     }
 
-    public Book setId(String id) {
+    public void setId(String id) {
         this.id = id;
-        return this;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public Book setTitle(String title) {
+    public void setTitle(String title) {
         this.title = title;
-        return this;
     }
 
     public String getPublisher() {
         return publisher;
     }
 
-    public Book setPublisher(String publisher) {
+    public void setPublisher(String publisher) {
         this.publisher = publisher;
-        return this;
     }
 
     public String getImage() {
         return image;
     }
 
-    public Book setImage(String image) {
+    public void setImage(String image) {
         this.image = image;
-        return this;
     }
 
     public List<String> getWriters() {
-        return Optional.ofNullable(writers)
-                .map(Collections::unmodifiableList)
-                .orElse(List.of());
+        return writers;
     }
 
-    public Book setWriters(List<String> writers) {
+    public void setWriters(List<String> writers) {
         this.writers = writers;
-        return this;
     }
 
     public LocalDateTime getUpdatedOn() {
         return updatedOn;
     }
 
-    public Book setUpdatedOn(LocalDateTime updatedOn) {
+    public void setUpdatedOn(LocalDateTime updatedOn) {
         this.updatedOn = updatedOn;
-        return this;
     }
 
     public LocalDateTime getCreatedOn() {
         return createdOn;
     }
 
-    public Book setCreatedOn(LocalDateTime createdOn) {
+    public void setCreatedOn(LocalDateTime createdOn) {
         this.createdOn = createdOn;
-        return this;
     }
 
     public Book created() {

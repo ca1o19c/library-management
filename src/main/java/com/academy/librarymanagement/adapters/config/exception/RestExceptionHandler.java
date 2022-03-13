@@ -1,4 +1,4 @@
-package com.academy.librarymanagement.infra.crosscutting.exception;
+package com.academy.librarymanagement.adapters.config.exception;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
