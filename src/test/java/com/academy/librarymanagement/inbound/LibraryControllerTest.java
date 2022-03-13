@@ -1,0 +1,45 @@
+package com.academy.librarymanagement.inbound;
+
+import com.academy.librarymanagement.adapters.config.exception.RestExceptionHandler;
+import com.academy.librarymanagement.adapters.in.LibraryController;
+import com.academy.librarymanagement.domain.BookAggregate;
+import com.academy.librarymanagement.ports.in.LibraryInbound;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.List;
+
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@RunWith(SpringRunner.class)
+@WebMvcTest(controllers = LibraryController.class)
+@ContextConfiguration(classes = {RestExceptionHandler.class, LibraryController.class})
+@DisplayName("Library Controller Test")
+class LibraryControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
+    private LibraryInbound libraryInbound;
+
+    @Test
+    void shouldReturnStatusOk() throws Exception {
+        when(libraryInbound.findAll())
+                .thenReturn(List.of(BookAggregate.builder().build()));
+
+        mockMvc.perform(get(BookConstants.PATH)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+}
