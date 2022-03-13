@@ -1,9 +1,11 @@
 package com.academy.librarymanagement.domain;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
-public class BookAggregate {
+public class Book {
 
     private String id;
     public String title;
@@ -61,16 +63,16 @@ public class BookAggregate {
             return this;
         }
 
-        public BookAggregate build() {
-            BookAggregate bookAggregate = new BookAggregate();
-            bookAggregate.id = this.id;
-            bookAggregate.updatedOn = this.updatedOn;
-            bookAggregate.title = this.title;
-            bookAggregate.image = this.image;
-            bookAggregate.publisher = this.publisher;
-            bookAggregate.writers = this.writers;
-            bookAggregate.createdOn = this.createdOn;
-            return bookAggregate;
+        public Book build() {
+            Book book = new Book();
+            book.id = this.id;
+            book.updatedOn = this.updatedOn;
+            book.title = this.title;
+            book.image = this.image;
+            book.publisher = this.publisher;
+            book.writers = this.writers;
+            book.createdOn = this.createdOn;
+            return book;
         }
     }
 
@@ -91,7 +93,9 @@ public class BookAggregate {
     }
 
     public List<String> getWriters() {
-        return writers;
+        return Optional.ofNullable(writers)
+                .map(Collections::unmodifiableList)
+                .orElse(List.of());
     }
 
     public LocalDateTime getUpdatedOn() {
@@ -102,11 +106,11 @@ public class BookAggregate {
         return createdOn;
     }
 
-    public void createdOn(BookAggregate bookAggregate) {
-        this.title = bookAggregate.getTitle();
-        this.publisher = bookAggregate.getPublisher();
-        this.image = bookAggregate.getImage();
-        this.writers = bookAggregate.getWriters();
+    public void createdOn(Book book) {
+        this.title = book.getTitle();
+        this.publisher = book.getPublisher();
+        this.image = book.getImage();
+        this.writers = book.getWriters();
         this.updatedOn = LocalDateTime.now();
     }
 
