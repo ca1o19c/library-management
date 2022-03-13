@@ -1,8 +1,8 @@
 package com.academy.librarymanagement.adapters.out;
 
 import com.academy.librarymanagement.domain.BookAggregate;
-import com.academy.librarymanagement.ports.in.MongoDatabaseStoreInbound;
-import com.academy.librarymanagement.ports.out.MongoOperationsOutbound;
+import com.academy.librarymanagement.ports.out.MongoDatabaseStoreOutbound;
+import com.academy.librarymanagement.ports.in.MongoOperationsInbound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,14 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-class MongoOperations implements MongoOperationsOutbound {
+class MongoOperations implements MongoOperationsInbound {
 
     @Autowired
-    private MongoDatabaseStoreInbound mongoDatabaseStoreInbound;
+    private MongoDatabaseStoreOutbound mongoDatabaseStoreOutbound;
 
     @Override
     public List<BookAggregate> findAll() {
-        List<Book> books = mongoDatabaseStoreInbound.findAll();
+        List<Book> books = mongoDatabaseStoreOutbound.findAll();
 
         return buildBookAggregate(books);
     }
