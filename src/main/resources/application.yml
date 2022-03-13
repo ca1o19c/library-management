@@ -1,28 +1,35 @@
 server:
   port: ${port:8080}
 
-logging:
-  level:
-    data:
-      mongodb:
-        core:
-          MongoTemplate: DEBUG
-        repository:
-            Query: DEBUG
-
 spring:
   main:
     banner-mode: "off"
   application:
-    name: library-management
-  jackson:
-    mapper:
-      ACCEPT_CASE_INSENSITIVE_ENUMS: true
-    deserialization:
-      ACCEPT_FLOAT_AS_INT: false
+    name: library-management-ms
   profiles:
     active: local
   data:
     mongodb:
-      uri: mongodb://localhost:27017/ibrary-management
+      uri: mongodb://localhost:27017
       database: library-management
+
+logging:
+  level:
+    org:
+    springframework: INFO
+    web:
+      socket:
+        config:
+          WebSocketMessageBrokerStats : INFO
+    root: INFO
+    data:
+      mongodb:
+        core:
+           MongoTemplate: INFO
+
+management:
+  endpoints:
+    web:
+      base-path: "/"
+      path-mapping:
+        health: "health"

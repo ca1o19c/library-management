@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.academy</groupId>
-	<artifactId>library-management</artifactId>
+	<artifactId>library-management-ms</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>library-management</name>
+	<name>library-management-ms</name>
 	<description> Library Management System</description>
 	<properties>
 		<java.version>11</java.version>
@@ -21,9 +21,26 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.4.6</version>
 		</dependency>
 
 		<dependency>

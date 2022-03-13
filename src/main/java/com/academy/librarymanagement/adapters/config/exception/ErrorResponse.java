@@ -1,9 +1,10 @@
-package com.academy.librarymanagement.infra.crosscutting.exception;
+package com.academy.librarymanagement.adapters.config.exception;
 
-import static com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import java.util.List;
+
+import static com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy;
 
 @JsonNaming(SnakeCaseStrategy.class)
 public class ErrorResponse {

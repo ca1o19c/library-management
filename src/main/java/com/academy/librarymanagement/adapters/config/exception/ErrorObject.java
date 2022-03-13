@@ -1,4 +1,4 @@
-package com.academy.librarymanagement.infra.crosscutting.exception;
+package com.academy.librarymanagement.adapters.config.exception;
 
 public class ErrorObject {
     private final String message;
