@@ -1,6 +1,6 @@
 package com.academy.librarymanagement.adapters.out;
 
-import com.academy.librarymanagement.domain.BookAggregate;
+import com.academy.librarymanagement.domain.Book;
 import com.academy.librarymanagement.ports.out.MongoDatabaseStoreOutbound;
 import com.academy.librarymanagement.ports.in.MongoOperationsInbound;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +16,17 @@ class MongoOperations implements MongoOperationsInbound {
     private MongoDatabaseStoreOutbound mongoDatabaseStoreOutbound;
 
     @Override
-    public List<BookAggregate> findAll() {
-        List<Book> books = mongoDatabaseStoreOutbound.findAll();
+    public List<Book> findAll() {
+        List<com.academy.librarymanagement.adapters.out.Book> books = mongoDatabaseStoreOutbound.findAll();
 
         return buildBookAggregate(books);
     }
 
-    private List<BookAggregate> buildBookAggregate(List<Book> books) {
+    private List<Book> buildBookAggregate(List<com.academy.librarymanagement.adapters.out.Book> books) {
 
-        BookAggregate.Builder bookBuilder = BookAggregate.builder();
+        Book.Builder bookBuilder = Book.builder();
 
-        List<BookAggregate> bookAggregates = new ArrayList<>();
+        List<Book> listBooks = new ArrayList<>();
 
         books.forEach(book -> {
                     bookBuilder
@@ -38,10 +38,10 @@ class MongoOperations implements MongoOperationsInbound {
                             .withCreatedOn(book.getCreatedOn())
                             .withUpdatedOn(book.getCreatedOn());
 
-                    bookAggregates.add(bookBuilder.build());
+                    listBooks.add(bookBuilder.build());
                 }
         );
 
-        return bookAggregates;
+        return listBooks;
     }
 }

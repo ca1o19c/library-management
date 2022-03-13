@@ -2,7 +2,7 @@ package com.academy.librarymanagement.inbound;
 
 import com.academy.librarymanagement.adapters.config.exception.RestExceptionHandler;
 import com.academy.librarymanagement.adapters.in.LibraryController;
-import com.academy.librarymanagement.domain.BookAggregate;
+import com.academy.librarymanagement.domain.Book;
 import com.academy.librarymanagement.ports.in.LibraryInbound;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,7 +36,7 @@ class LibraryControllerTest {
     @Test
     void shouldReturnStatusOk() throws Exception {
         when(libraryInbound.findAll())
-                .thenReturn(List.of(BookAggregate.builder().build()));
+                .thenReturn(List.of(Book.builder().build()));
 
         mockMvc.perform(get(BookConstants.PATH)
                 .contentType(MediaType.APPLICATION_JSON))

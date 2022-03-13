@@ -1,6 +1,6 @@
 package com.academy.librarymanagement.adapters.in.dto;
 
-import com.academy.librarymanagement.domain.BookAggregate;
+import com.academy.librarymanagement.domain.Book;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
@@ -18,7 +18,7 @@ public class BookResponse {
     @JsonProperty("created_on")
     private LocalDateTime createdOn;
 
-    public static BookResponse from(BookAggregate entity) {
+    public static BookResponse from(Book entity) {
         return BookResponse.builder()
                 .withId(entity.getId())
                 .withTitle(entity.getTitle())

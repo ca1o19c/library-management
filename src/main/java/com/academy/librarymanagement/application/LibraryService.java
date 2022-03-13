@@ -1,6 +1,6 @@
 package com.academy.librarymanagement.application;
 
-import com.academy.librarymanagement.domain.BookAggregate;
+import com.academy.librarymanagement.domain.Book;
 import com.academy.librarymanagement.ports.in.LibraryInbound;
 import com.academy.librarymanagement.ports.in.MongoOperationsInbound;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ class LibraryService implements LibraryInbound {
     MongoOperationsInbound mongoOperationsInbound;
 
     @Override
-    public List<BookAggregate> findAll() {
+    public List<Book> findAll() {
         return mongoOperationsInbound.findAll();
     }
 
