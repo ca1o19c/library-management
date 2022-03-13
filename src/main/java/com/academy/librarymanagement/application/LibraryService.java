@@ -2,7 +2,7 @@ package com.academy.librarymanagement.application;
 
 import com.academy.librarymanagement.domain.BookAggregate;
 import com.academy.librarymanagement.ports.in.LibraryInbound;
-import com.academy.librarymanagement.ports.out.MongoOperationsOutbound;
+import com.academy.librarymanagement.ports.in.MongoOperationsInbound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +12,11 @@ import java.util.List;
 class LibraryService implements LibraryInbound {
 
     @Autowired
-    MongoOperationsOutbound mongoOperationsOutbound;
+    MongoOperationsInbound mongoOperationsInbound;
 
     @Override
     public List<BookAggregate> findAll() {
-        return mongoOperationsOutbound.findAll();
+        return mongoOperationsInbound.findAll();
     }
 
     @Override

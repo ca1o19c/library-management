@@ -1,9 +1,9 @@
-package com.academy.librarymanagement.ports.in;
+package com.academy.librarymanagement.ports.out;
 
 import com.academy.librarymanagement.adapters.out.Book;
 
 import java.util.List;
 
-public interface MongoDatabaseStoreInbound {
+public interface MongoDatabaseStoreOutbound {
     List<Book> findAll();
 }
