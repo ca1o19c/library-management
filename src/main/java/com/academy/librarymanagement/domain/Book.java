@@ -105,18 +105,6 @@ public class Book {
     public LocalDateTime getCreatedOn() {
         return createdOn;
     }
-
-    public void createdOn(Book book) {
-        this.title = book.getTitle();
-        this.publisher = book.getPublisher();
-        this.image = book.getImage();
-        this.writers = book.getWriters();
-        this.updatedOn = LocalDateTime.now();
-    }
-
-    public void updatedOn() {
-        this.createdOn = LocalDateTime.now();
-    }
 }
 
 

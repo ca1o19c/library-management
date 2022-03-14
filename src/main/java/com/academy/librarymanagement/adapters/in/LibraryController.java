@@ -1,19 +1,21 @@
 package com.academy.librarymanagement.adapters.in;
 
+import com.academy.librarymanagement.adapters.in.dto.BookRequest;
 import com.academy.librarymanagement.adapters.in.dto.BookResponse;
 import com.academy.librarymanagement.adapters.in.dto.BookSearchRequest;
 import com.academy.librarymanagement.adapters.in.dto.PageResponse;
+import com.academy.librarymanagement.application.LibraryActions;
+import com.academy.librarymanagement.domain.Book;
 import com.academy.librarymanagement.domain.FilteredBook;
 import com.academy.librarymanagement.domain.SortType;
 import com.academy.librarymanagement.ports.in.LibraryInbound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,7 +25,7 @@ import java.util.stream.Collectors;
 public class LibraryController {
 
     @Autowired
-    LibraryInbound libraryInbound;
+    private LibraryInbound libraryInbound;
 
     @GetMapping
     public ResponseEntity<PageResponse<BookResponse>> findAll(@RequestParam(required = false) String title, @RequestParam(required = false) String publisher,
@@ -55,5 +57,14 @@ public class LibraryController {
         );
 
         return ResponseEntity.ok(pageResponse);
+    }
+
+    @PostMapping
+    ResponseEntity<Void> create(@Valid @RequestBody BookRequest bookRequest) {
+        Book book = BookRequest.from(bookRequest);
+
+        libraryInbound.save(book);
+
+        return ResponseEntity.created(LibraryActions.getLocation(book.getId())).build();
     }
 }

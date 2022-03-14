@@ -24,6 +24,11 @@ class MongoOperations implements MongoOperationsInbound {
         return buildBookAggregate(books);
     }
 
+    @Override
+    public void save(Book book) {
+        mongoDatabaseStoreOutbound.save(book);
+    }
+
     private FilteredBook buildBookAggregate(ResearchedBook books) {
 
         Book.Builder bookBuilder = Book.builder();

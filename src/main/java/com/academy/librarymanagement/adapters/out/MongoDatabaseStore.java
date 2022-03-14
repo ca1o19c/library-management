@@ -32,7 +32,7 @@ class MongoDatabaseStore implements MongoDatabaseStoreOutbound {
 
     @Override
     public ResearchedBook findAll(BookSearchRequest search) {
-        var query = this.buildQuery(search);
+        Query query = this.buildQuery(search);
 
         int page = search.getPage();
 
@@ -51,6 +51,20 @@ class MongoDatabaseStore implements MongoDatabaseStoreOutbound {
         return new ResearchedBook(total, books);
     }
 
+    @Override
+    public void save(com.academy.librarymanagement.domain.Book book) {
+        Book bookDocument = new Book();
+
+        bookDocument.setId(book.getId());
+        bookDocument.setTitle(book.getTitle());
+        bookDocument.setImage(book.getImage());
+        bookDocument.setPublisher(book.getPublisher());
+        bookDocument.setWriters(book.getWriters());
+        bookDocument.created();
+
+        mongoTemplate.save(bookDocument);
+    }
+
     private Query buildQuery(BookSearchRequest search) {
         Query query = new Query();
 
@@ -60,10 +74,10 @@ class MongoDatabaseStore implements MongoDatabaseStoreOutbound {
         if (!isNull(initialDate) && !isNull(finalDate))
             query.addCriteria(Criteria.where(CREATED_ON_PROPERTY).gte(initialDate).lte(finalDate));
 
-        else if (!isNull(initialDate) && isNull(finalDate))
+        if (!isNull(initialDate) && isNull(finalDate))
             query.addCriteria(Criteria.where(CREATED_ON_PROPERTY).gte(initialDate));
 
-        else if (!isNull(finalDate) && isNull(initialDate))
+        if (!isNull(finalDate) && isNull(initialDate))
             query.addCriteria(Criteria.where(CREATED_ON_PROPERTY).lte(finalDate));
 
         String title = search.getTitle();
