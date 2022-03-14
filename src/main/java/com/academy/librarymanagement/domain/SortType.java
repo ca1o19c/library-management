@@ -3,7 +3,7 @@ package com.academy.librarymanagement.domain;
 public enum SortType {
     ASC("asc"), DESC("desc");
 
-    private String value;
+    private final String value;
 
     SortType(String value) {
         this.value = value;
