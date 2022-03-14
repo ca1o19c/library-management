@@ -1,6 +1,6 @@
 package com.academy.librarymanagement.application;
 
-import com.academy.librarymanagement.adapters.in.dto.BookSearchRequest;
+import com.academy.librarymanagement.domain.BookSearch;
 import com.academy.librarymanagement.domain.Book;
 import com.academy.librarymanagement.domain.FilteredBook;
 import com.academy.librarymanagement.ports.in.LibraryInbound;
@@ -15,7 +15,7 @@ class LibraryService implements LibraryInbound {
     MongoOperationsInbound mongoOperationsInbound;
 
     @Override
-    public FilteredBook findAll(BookSearchRequest search) {
+    public FilteredBook findAll(BookSearch search) {
         return mongoOperationsInbound.findAll(search);
     }
 

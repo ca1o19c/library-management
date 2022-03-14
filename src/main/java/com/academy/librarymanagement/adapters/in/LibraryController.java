@@ -2,7 +2,7 @@ package com.academy.librarymanagement.adapters.in;
 
 import com.academy.librarymanagement.adapters.in.dto.BookRequest;
 import com.academy.librarymanagement.adapters.in.dto.BookResponse;
-import com.academy.librarymanagement.adapters.in.dto.BookSearchRequest;
+import com.academy.librarymanagement.domain.BookSearch;
 import com.academy.librarymanagement.adapters.in.dto.PageResponse;
 import com.academy.librarymanagement.application.LibraryActions;
 import com.academy.librarymanagement.domain.Book;
@@ -12,7 +12,6 @@ import com.academy.librarymanagement.ports.in.LibraryInbound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -35,7 +34,7 @@ public class LibraryController {
                                                               @RequestParam(value = "final_date", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate finalDate
     ) {
 
-        BookSearchRequest search = BookSearchRequest.builder()
+        BookSearch search = BookSearch.builder()
                 .withTitle(title)
                 .withPublisher(publisher)
                 .withPage(page)

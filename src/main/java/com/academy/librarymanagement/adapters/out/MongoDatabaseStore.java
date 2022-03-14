@@ -1,6 +1,5 @@
 package com.academy.librarymanagement.adapters.out;
 
-import com.academy.librarymanagement.adapters.in.dto.BookSearchRequest;
 import com.academy.librarymanagement.domain.SortType;
 import com.academy.librarymanagement.ports.out.MongoDatabaseStoreOutbound;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +22,14 @@ import static org.apache.commons.lang3.ObjectUtils.isEmpty;
 @Service
 class MongoDatabaseStore implements MongoDatabaseStoreOutbound {
 
-    @Autowired
-    MongoTemplate mongoTemplate;
-
     private static final String CREATED_ON_PROPERTY = "createdOn";
     private static final String TITLE_PROPERTY = "title";
     private static final String PUBLISHER_PROPERTY = "publisher";
+    @Autowired
+    MongoTemplate mongoTemplate;
 
     @Override
-    public ResearchedBook findAll(BookSearchRequest search) {
+    public ResearchedBook findAll(com.academy.librarymanagement.domain.BookSearch search) {
         Query query = this.buildQuery(search);
 
         int page = search.getPage();
@@ -65,7 +63,7 @@ class MongoDatabaseStore implements MongoDatabaseStoreOutbound {
         mongoTemplate.save(bookDocument);
     }
 
-    private Query buildQuery(BookSearchRequest search) {
+    private Query buildQuery(com.academy.librarymanagement.domain.BookSearch search) {
         Query query = new Query();
 
         Instant initialDate = toStartOfDay(search.getInitialDate());
