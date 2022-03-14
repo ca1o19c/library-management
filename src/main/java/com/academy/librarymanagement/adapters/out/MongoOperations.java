@@ -43,7 +43,7 @@ class MongoOperations implements MongoOperationsInbound {
                             .withTitle(book.getTitle())
                             .withWriters(book.getWriters())
                             .withCreatedOn(book.getCreatedOn())
-                            .withUpdatedOn(book.getCreatedOn());
+                            .withUpdatedOn(book.getUpdatedOn());
 
                     listBooks.add(bookBuilder.build());
                 }
