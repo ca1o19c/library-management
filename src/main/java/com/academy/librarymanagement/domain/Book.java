@@ -8,10 +8,10 @@ import java.util.Optional;
 public class Book {
 
     private String id;
-    public String title;
-    public String publisher;
-    public String image;
-    public List<String> writers;
+    private String title;
+    private String publisher;
+    private String image;
+    private List<String> writers;
     private LocalDateTime updatedOn;
     private LocalDateTime createdOn;
 
@@ -20,10 +20,10 @@ public class Book {
     }
 
     public static final class Builder {
-        public String title;
-        public String publisher;
-        public String image;
-        public List<String> writers;
+        private String title;
+        private String publisher;
+        private String image;
+        private List<String> writers;
         private String id;
         private LocalDateTime updatedOn;
         private LocalDateTime createdOn;

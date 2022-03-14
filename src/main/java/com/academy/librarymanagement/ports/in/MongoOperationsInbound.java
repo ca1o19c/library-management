@@ -1,9 +1,8 @@
 package com.academy.librarymanagement.ports.in;
 
-import com.academy.librarymanagement.domain.Book;
-
-import java.util.List;
+import com.academy.librarymanagement.adapters.in.dto.BookSearchRequest;
+import com.academy.librarymanagement.domain.FilteredBook;
 
 public interface MongoOperationsInbound {
-    List<Book> findAll();
+    FilteredBook findAll(BookSearchRequest search);
 }

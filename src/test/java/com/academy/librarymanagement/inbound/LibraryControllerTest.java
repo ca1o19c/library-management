@@ -3,6 +3,7 @@ package com.academy.librarymanagement.inbound;
 import com.academy.librarymanagement.adapters.config.exception.RestExceptionHandler;
 import com.academy.librarymanagement.adapters.in.LibraryController;
 import com.academy.librarymanagement.domain.Book;
+import com.academy.librarymanagement.domain.FilteredBook;
 import com.academy.librarymanagement.ports.in.LibraryInbound;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -35,10 +37,16 @@ class LibraryControllerTest {
 
     @Test
     void shouldReturnStatusOk() throws Exception {
-        when(libraryInbound.findAll())
-                .thenReturn(List.of(Book.builder().build()));
+        when(libraryInbound.findAll(any()))
+                .thenReturn(FilteredBook.builder()
+                        .withBooks(List.of(Book.builder().build()))
+                        .withTotal(1)
+                        .build()
+                );
 
         mockMvc.perform(get(BookConstants.PATH)
+                .queryParam("page", "0")
+                .queryParam("limit", "1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }

@@ -1,8 +1,10 @@
 package com.academy.librarymanagement.adapters.out;
 
+import com.academy.librarymanagement.adapters.in.dto.BookSearchRequest;
 import com.academy.librarymanagement.domain.Book;
-import com.academy.librarymanagement.ports.out.MongoDatabaseStoreOutbound;
+import com.academy.librarymanagement.domain.FilteredBook;
 import com.academy.librarymanagement.ports.in.MongoOperationsInbound;
+import com.academy.librarymanagement.ports.out.MongoDatabaseStoreOutbound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,19 +18,19 @@ class MongoOperations implements MongoOperationsInbound {
     private MongoDatabaseStoreOutbound mongoDatabaseStoreOutbound;
 
     @Override
-    public List<Book> findAll() {
-        List<com.academy.librarymanagement.adapters.out.Book> books = mongoDatabaseStoreOutbound.findAll();
+    public FilteredBook findAll(BookSearchRequest search) {
+        ResearchedBook books = mongoDatabaseStoreOutbound.findAll(search);
 
         return buildBookAggregate(books);
     }
 
-    private List<Book> buildBookAggregate(List<com.academy.librarymanagement.adapters.out.Book> books) {
+    private FilteredBook buildBookAggregate(ResearchedBook books) {
 
         Book.Builder bookBuilder = Book.builder();
 
         List<Book> listBooks = new ArrayList<>();
 
-        books.forEach(book -> {
+        books.getResult().forEach(book -> {
                     bookBuilder
                             .withId(book.getId())
                             .withImage(book.getImage())
@@ -42,6 +44,9 @@ class MongoOperations implements MongoOperationsInbound {
                 }
         );
 
-        return listBooks;
+        return FilteredBook.builder()
+                .withBooks(listBooks)
+                .withTotal(books.getTotal())
+                .build();
     }
 }
