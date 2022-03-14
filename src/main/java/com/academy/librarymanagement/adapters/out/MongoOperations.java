@@ -1,6 +1,6 @@
 package com.academy.librarymanagement.adapters.out;
 
-import com.academy.librarymanagement.adapters.in.dto.BookSearchRequest;
+import com.academy.librarymanagement.domain.BookSearch;
 import com.academy.librarymanagement.domain.Book;
 import com.academy.librarymanagement.domain.FilteredBook;
 import com.academy.librarymanagement.ports.in.MongoOperationsInbound;
@@ -18,10 +18,15 @@ class MongoOperations implements MongoOperationsInbound {
     private MongoDatabaseStoreOutbound mongoDatabaseStoreOutbound;
 
     @Override
-    public FilteredBook findAll(BookSearchRequest search) {
+    public FilteredBook findAll(BookSearch search) {
         ResearchedBook books = mongoDatabaseStoreOutbound.findAll(search);
 
         return buildBookAggregate(books);
+    }
+
+    @Override
+    public void save(Book book) {
+        mongoDatabaseStoreOutbound.save(book);
     }
 
     private FilteredBook buildBookAggregate(ResearchedBook books) {
@@ -38,7 +43,7 @@ class MongoOperations implements MongoOperationsInbound {
                             .withTitle(book.getTitle())
                             .withWriters(book.getWriters())
                             .withCreatedOn(book.getCreatedOn())
-                            .withUpdatedOn(book.getCreatedOn());
+                            .withUpdatedOn(book.getUpdatedOn());
 
                     listBooks.add(bookBuilder.build());
                 }

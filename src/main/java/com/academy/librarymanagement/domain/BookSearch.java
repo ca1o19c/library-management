@@ -1,10 +1,8 @@
-package com.academy.librarymanagement.adapters.in.dto;
-
-import com.academy.librarymanagement.domain.SortType;
+package com.academy.librarymanagement.domain;
 
 import java.time.LocalDate;
 
-public class BookSearchRequest {
+public class BookSearch {
 
     private String title;
     private String publisher;
@@ -62,16 +60,16 @@ public class BookSearchRequest {
             return this;
         }
 
-        public BookSearchRequest build() {
-            BookSearchRequest bookSearchRequest = new BookSearchRequest();
-            bookSearchRequest.title = this.title;
-            bookSearchRequest.page = this.page;
-            bookSearchRequest.finalDate = this.finalDate;
-            bookSearchRequest.limit = this.limit;
-            bookSearchRequest.sortType = this.sortType;
-            bookSearchRequest.initialDate = this.initialDate;
-            bookSearchRequest.publisher = this.publisher;
-            return bookSearchRequest;
+        public BookSearch build() {
+            BookSearch bookSearch = new BookSearch();
+            bookSearch.title = this.title;
+            bookSearch.page = this.page;
+            bookSearch.finalDate = this.finalDate;
+            bookSearch.limit = this.limit;
+            bookSearch.sortType = this.sortType;
+            bookSearch.initialDate = this.initialDate;
+            bookSearch.publisher = this.publisher;
+            return bookSearch;
         }
     }
 

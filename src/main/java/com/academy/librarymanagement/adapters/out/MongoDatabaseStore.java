@@ -1,6 +1,5 @@
 package com.academy.librarymanagement.adapters.out;
 
-import com.academy.librarymanagement.adapters.in.dto.BookSearchRequest;
 import com.academy.librarymanagement.domain.SortType;
 import com.academy.librarymanagement.ports.out.MongoDatabaseStoreOutbound;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,16 +22,15 @@ import static org.apache.commons.lang3.ObjectUtils.isEmpty;
 @Service
 class MongoDatabaseStore implements MongoDatabaseStoreOutbound {
 
-    @Autowired
-    MongoTemplate mongoTemplate;
-
     private static final String CREATED_ON_PROPERTY = "createdOn";
     private static final String TITLE_PROPERTY = "title";
     private static final String PUBLISHER_PROPERTY = "publisher";
+    @Autowired
+    MongoTemplate mongoTemplate;
 
     @Override
-    public ResearchedBook findAll(BookSearchRequest search) {
-        var query = this.buildQuery(search);
+    public ResearchedBook findAll(com.academy.librarymanagement.domain.BookSearch search) {
+        Query query = this.buildQuery(search);
 
         int page = search.getPage();
 
@@ -51,7 +49,21 @@ class MongoDatabaseStore implements MongoDatabaseStoreOutbound {
         return new ResearchedBook(total, books);
     }
 
-    private Query buildQuery(BookSearchRequest search) {
+    @Override
+    public void save(com.academy.librarymanagement.domain.Book book) {
+        Book bookDocument = new Book();
+
+        bookDocument.setId(book.getId());
+        bookDocument.setTitle(book.getTitle());
+        bookDocument.setImage(book.getImage());
+        bookDocument.setPublisher(book.getPublisher());
+        bookDocument.setWriters(book.getWriters());
+        bookDocument.created();
+
+        mongoTemplate.save(bookDocument);
+    }
+
+    private Query buildQuery(com.academy.librarymanagement.domain.BookSearch search) {
         Query query = new Query();
 
         Instant initialDate = toStartOfDay(search.getInitialDate());
@@ -60,10 +72,10 @@ class MongoDatabaseStore implements MongoDatabaseStoreOutbound {
         if (!isNull(initialDate) && !isNull(finalDate))
             query.addCriteria(Criteria.where(CREATED_ON_PROPERTY).gte(initialDate).lte(finalDate));
 
-        else if (!isNull(initialDate) && isNull(finalDate))
+        if (!isNull(initialDate) && isNull(finalDate))
             query.addCriteria(Criteria.where(CREATED_ON_PROPERTY).gte(initialDate));
 
-        else if (!isNull(finalDate) && isNull(initialDate))
+        if (!isNull(finalDate) && isNull(initialDate))
             query.addCriteria(Criteria.where(CREATED_ON_PROPERTY).lte(finalDate));
 
         String title = search.getTitle();

@@ -6,9 +6,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @Service
-class LibraryActions {
+public class LibraryActions {
 
-    public URI getLocation(String id) {
+    public static URI getLocation(String id) {
         return ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
