@@ -8,10 +8,10 @@ import java.util.List;
 
 public class BookResponse {
 
-    public String image;
     private String id;
     private String title;
     private String publisher;
+    public String image;
     private List<String> writers;
     @JsonProperty("updated_on")
     private LocalDateTime updatedOn;
