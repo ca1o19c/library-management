@@ -66,4 +66,13 @@ public class LibraryController {
 
         return ResponseEntity.created(LibraryActions.getLocation(book.getId())).build();
     }
+
+    @GetMapping("/{id}")
+    ResponseEntity<BookResponse> findOne(@Valid @PathVariable String id) {
+        Book book = libraryInbound.findOne(id);
+
+        BookResponse bookResponse = BookResponse.from(book);
+
+        return ResponseEntity.ok(bookResponse);
+    }
 }

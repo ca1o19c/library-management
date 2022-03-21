@@ -6,7 +6,7 @@ import com.academy.librarymanagement.domain.FilteredBook;
 
 public interface LibraryInbound {
     FilteredBook findAll(BookSearch search);
-    void findOne();
+    Book findOne(String id);
     void save(Book book);
     void findByTitle();
 }

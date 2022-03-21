@@ -1,5 +1,6 @@
 package com.academy.librarymanagement.adapters.out;
 
+import com.academy.librarymanagement.adapters.config.exception.BookNotFoundException;
 import com.academy.librarymanagement.domain.BookSearch;
 import com.academy.librarymanagement.domain.Book;
 import com.academy.librarymanagement.domain.FilteredBook;
@@ -27,6 +28,21 @@ class MongoOperations implements MongoOperationsInbound {
     @Override
     public void save(Book book) {
         mongoDatabaseStoreOutbound.save(book);
+    }
+
+    @Override
+    public Book findOne(String id) {
+        com.academy.librarymanagement.adapters.out.Book book = mongoDatabaseStoreOutbound.findOne(id).orElseThrow(() -> new BookNotFoundException("Book with id " + id + " not found"));
+
+        return Book.builder()
+                .withId(book.getId())
+                .withTitle(book.getTitle())
+                .withImage(book.getImage())
+                .withPublisher(book.getPublisher())
+                .withWriters(book.getWriters())
+                .withCreatedOn(book.getCreatedOn())
+                .withUpdatedOn(book.getUpdatedOn())
+                .build();
     }
 
     private FilteredBook buildBookAggregate(ResearchedBook books) {
