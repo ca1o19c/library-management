@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-@Document(collection = "library-management")
+@Document(collection = "library")
 public class Book {
     @Id
     private String id;

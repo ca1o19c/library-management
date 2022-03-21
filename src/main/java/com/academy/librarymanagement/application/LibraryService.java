@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 class LibraryService implements LibraryInbound {
 
     @Autowired
-    MongoOperationsInbound mongoOperationsInbound;
+    private MongoOperationsInbound mongoOperationsInbound;
 
     @Override
     public FilteredBook findAll(BookSearch search) {

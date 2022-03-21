@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.academy</groupId>
-	<artifactId>library-management</artifactId>
+	<artifactId>library-management-ms</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>library-management</name>
+	<name>library-management-ms</name>
 	<description> Library Management System</description>
 	<properties>
 		<java.version>11</java.version>

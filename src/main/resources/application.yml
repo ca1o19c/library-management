@@ -1,5 +1,5 @@
 server:
-  port: ${port:8080}
+  port: ${PORT:8080}
 
 spring:
   main:
@@ -10,17 +10,12 @@ spring:
     active: local
   data:
     mongodb:
-      uri: mongodb://localhost:27017
-      database: library-management
-
+      uri: ${MONGO_URI}
+      field-naming-strategy: org.springframework.data.mapping.model.SnakeCaseFieldNamingStrategy
 logging:
   level:
     org:
     springframework: INFO
-    web:
-      socket:
-        config:
-          WebSocketMessageBrokerStats : INFO
     root: INFO
     data:
       mongodb:
