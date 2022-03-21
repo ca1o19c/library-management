@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.Objects.isNull;
 import static org.apache.commons.lang3.ObjectUtils.isEmpty;
@@ -25,8 +26,10 @@ class MongoDatabaseStore implements MongoDatabaseStoreOutbound {
     private static final String CREATED_ON_PROPERTY = "createdOn";
     private static final String TITLE_PROPERTY = "title";
     private static final String PUBLISHER_PROPERTY = "publisher";
+    private static final String ID_PROPERTY = "id";
+
     @Autowired
-    MongoTemplate mongoTemplate;
+    private MongoTemplate mongoTemplate;
 
     @Override
     public ResearchedBook findAll(com.academy.librarymanagement.domain.BookSearch search) {
@@ -61,6 +64,15 @@ class MongoDatabaseStore implements MongoDatabaseStoreOutbound {
         bookDocument.created();
 
         mongoTemplate.save(bookDocument);
+    }
+
+    @Override
+    public Optional<Book> findOne(String id) {
+        Query query = new Query();
+
+        query.addCriteria(Criteria.where(ID_PROPERTY).is(id));
+
+        return Optional.ofNullable(mongoTemplate.findOne(query, Book.class));
     }
 
     private Query buildQuery(com.academy.librarymanagement.domain.BookSearch search) {

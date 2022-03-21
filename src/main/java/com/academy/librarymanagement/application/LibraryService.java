@@ -20,8 +20,8 @@ class LibraryService implements LibraryInbound {
     }
 
     @Override
-    public void findOne() {
-
+    public Book findOne(String id) {
+        return mongoOperationsInbound.findOne(id);
     }
 
     @Override
