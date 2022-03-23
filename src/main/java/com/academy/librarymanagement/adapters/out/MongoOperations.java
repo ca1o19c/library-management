@@ -1,8 +1,8 @@
 package com.academy.librarymanagement.adapters.out;
 
 import com.academy.librarymanagement.adapters.config.exception.BookNotFoundException;
-import com.academy.librarymanagement.domain.BookSearch;
 import com.academy.librarymanagement.domain.Book;
+import com.academy.librarymanagement.domain.BookSearch;
 import com.academy.librarymanagement.domain.FilteredBook;
 import com.academy.librarymanagement.ports.in.MongoOperationsInbound;
 import com.academy.librarymanagement.ports.out.MongoDatabaseStoreOutbound;
@@ -43,6 +43,11 @@ class MongoOperations implements MongoOperationsInbound {
                 .withCreatedOn(book.getCreatedOn())
                 .withUpdatedOn(book.getUpdatedOn())
                 .build();
+    }
+
+    @Override
+    public void deleteOne(String id) {
+        mongoDatabaseStoreOutbound.deleteOne(id).orElseThrow(() -> new BookNotFoundException("Book with id " + id + " not found"));
     }
 
     private FilteredBook buildBookAggregate(ResearchedBook books) {

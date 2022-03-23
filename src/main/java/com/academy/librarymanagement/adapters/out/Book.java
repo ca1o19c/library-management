@@ -9,6 +9,7 @@ import java.util.Objects;
 
 @Document(collection = "library")
 public class Book {
+
     @Id
     private String id;
     public String title;
@@ -103,14 +104,6 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Library{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", publisher='" + publisher + '\'' +
-                ", image='" + image + '\'' +
-                ", writers=" + writers +
-                ", updatedOn=" + updatedOn +
-                ", createdOn=" + createdOn +
-                '}';
+        return "Library{" + "id='" + id + '\'' + ", title='" + title + '\'' + ", publisher='" + publisher + '\'' + ", image='" + image + '\'' + ", writers=" + writers + ", updatedOn=" + updatedOn + ", createdOn=" + createdOn + '}';
     }
 }

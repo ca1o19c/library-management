@@ -39,9 +39,7 @@ class MongoDatabaseStore implements MongoDatabaseStoreOutbound {
 
         int limit = search.getLimit();
 
-        Sort.Direction direction = Sort.Direction.fromString(isEmpty(search.getSortType())
-                ? SortType.ASC.getValue()
-                : search.getSortType().getValue());
+        Sort.Direction direction = Sort.Direction.fromString(isEmpty(search.getSortType()) ? SortType.ASC.getValue() : search.getSortType().getValue());
 
         int total = Math.toIntExact(mongoTemplate.count(query, Book.class));
 
@@ -75,6 +73,15 @@ class MongoDatabaseStore implements MongoDatabaseStoreOutbound {
         return Optional.ofNullable(mongoTemplate.findOne(query, Book.class));
     }
 
+    @Override
+    public Optional<Book> deleteOne(String id) {
+        Query query = new Query();
+
+        query.addCriteria(Criteria.where(ID_PROPERTY).is(id));
+
+        return Optional.ofNullable(mongoTemplate.findAndRemove(query, Book.class));
+    }
+
     private Query buildQuery(com.academy.librarymanagement.domain.BookSearch search) {
         Query query = new Query();
 
@@ -92,25 +99,20 @@ class MongoDatabaseStore implements MongoDatabaseStoreOutbound {
 
         String title = search.getTitle();
 
-        if (!isNull(title))
-            query.addCriteria(Criteria.where(TITLE_PROPERTY).is(title));
+        if (!isNull(title)) query.addCriteria(Criteria.where(TITLE_PROPERTY).is(title));
 
         String publisher = search.getPublisher();
 
-        if (!isNull(publisher))
-            query.addCriteria(Criteria.where(PUBLISHER_PROPERTY).is(publisher));
+        if (!isNull(publisher)) query.addCriteria(Criteria.where(PUBLISHER_PROPERTY).is(publisher));
 
         return query;
     }
 
     private Instant toStartOfDay(LocalDate localDate) {
-        return localDate == null ? null : localDate.atStartOfDay(ZoneId.of("UTC"))
-                .toInstant();
+        return localDate == null ? null : localDate.atStartOfDay(ZoneId.of("UTC")).toInstant();
     }
 
     private Instant toEndOfDay(LocalDate localDate) {
-        return localDate == null ? null : localDate.atTime(LocalTime.MAX)
-                .atZone(ZoneId.of("UTC"))
-                .toInstant();
+        return localDate == null ? null : localDate.atTime(LocalTime.MAX).atZone(ZoneId.of("UTC")).toInstant();
     }
 }
