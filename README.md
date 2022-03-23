@@ -54,7 +54,7 @@ with the id present in the route parameters<br><br>
 
 # techs:
 
-- Tecnologia que preferir :)
+- Technology you prefer :)
 
 # How to begin:
 
