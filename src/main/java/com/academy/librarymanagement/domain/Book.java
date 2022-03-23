@@ -19,6 +19,34 @@ public class Book {
         return new Builder();
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public List<String> getWriters() {
+        return Optional.ofNullable(writers).map(Collections::unmodifiableList).orElse(List.of());
+    }
+
+    public LocalDateTime getUpdatedOn() {
+        return updatedOn;
+    }
+
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
     public static final class Builder {
         private String title;
         private String publisher;
@@ -74,36 +102,6 @@ public class Book {
             book.createdOn = this.createdOn;
             return book;
         }
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public List<String> getWriters() {
-        return Optional.ofNullable(writers)
-                .map(Collections::unmodifiableList)
-                .orElse(List.of());
-    }
-
-    public LocalDateTime getUpdatedOn() {
-        return updatedOn;
-    }
-
-    public LocalDateTime getCreatedOn() {
-        return createdOn;
     }
 }
 
