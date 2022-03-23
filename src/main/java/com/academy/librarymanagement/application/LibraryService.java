@@ -1,7 +1,7 @@
 package com.academy.librarymanagement.application;
 
-import com.academy.librarymanagement.domain.BookSearch;
 import com.academy.librarymanagement.domain.Book;
+import com.academy.librarymanagement.domain.BookSearch;
 import com.academy.librarymanagement.domain.FilteredBook;
 import com.academy.librarymanagement.ports.in.LibraryInbound;
 import com.academy.librarymanagement.ports.in.MongoOperationsInbound;
@@ -30,7 +30,12 @@ class LibraryService implements LibraryInbound {
     }
 
     @Override
-    public void findByTitle() {
+    public void updateOne() {
 
+    }
+
+    @Override
+    public void deleteOne(String id) {
+        mongoOperationsInbound.deleteOne(id);
     }
 }
