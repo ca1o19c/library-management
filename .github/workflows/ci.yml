@@ -10,7 +10,7 @@ on:
     branches: [ main ]
     
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
             
     steps:
@@ -26,8 +26,7 @@ jobs:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2      
-  test:
-      runs-on: ubuntu-latest
-      steps:
-      - name: Build and test project with Maven
-        run: mvn -B package --file pom.xml
+
+    - name: Build and test project with Maven
+      run: mvn -B package --file pom.xml
+      
