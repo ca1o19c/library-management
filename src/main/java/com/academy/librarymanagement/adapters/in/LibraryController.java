@@ -2,10 +2,10 @@ package com.academy.librarymanagement.adapters.in;
 
 import com.academy.librarymanagement.adapters.in.dto.BookRequest;
 import com.academy.librarymanagement.adapters.in.dto.BookResponse;
-import com.academy.librarymanagement.domain.BookSearch;
 import com.academy.librarymanagement.adapters.in.dto.PageResponse;
 import com.academy.librarymanagement.application.LibraryActions;
 import com.academy.librarymanagement.domain.Book;
+import com.academy.librarymanagement.domain.BookSearch;
 import com.academy.librarymanagement.domain.FilteredBook;
 import com.academy.librarymanagement.domain.SortType;
 import com.academy.librarymanagement.ports.in.LibraryInbound;
@@ -68,11 +68,19 @@ public class LibraryController {
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<BookResponse> findOne(@Valid @PathVariable String id) {
+    ResponseEntity<BookResponse> findOne(@PathVariable String id) {
         Book book = libraryInbound.findOne(id);
 
         BookResponse bookResponse = BookResponse.from(book);
 
         return ResponseEntity.ok(bookResponse);
+    }
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<Void> deleteOne(@PathVariable String id) {
+
+        libraryInbound.deleteOne(id);
+
+        return  ResponseEntity.noContent().build();
     }
 }
