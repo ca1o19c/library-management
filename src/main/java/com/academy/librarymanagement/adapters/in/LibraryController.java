@@ -12,6 +12,7 @@ import com.academy.librarymanagement.ports.in.LibraryInbound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -81,6 +82,6 @@ public class LibraryController {
 
         libraryInbound.deleteOne(id);
 
-        return  ResponseEntity.noContent().build();
+        return ResponseEntity.noContent().build();
     }
 }

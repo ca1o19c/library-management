@@ -1,16 +1,18 @@
 package com.academy.librarymanagement.adapters.config.exception;
 
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.util.List;
 
-import static com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy;
-
-@JsonNaming(SnakeCaseStrategy.class)
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonPropertyOrder({"message", "status", "code", "object_name", "errors"})
 public class ErrorResponse {
     private final String message;
     private final int code;
     private final String status;
+    @JsonProperty("object_name")
     private String objectName;
     private List<ErrorObject> errors;
 

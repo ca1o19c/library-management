@@ -1,6 +1,6 @@
 package com.academy.librarymanagement.inbound;
 
-import com.academy.librarymanagement.adapters.config.exception.RestExceptionHandler;
+import com.academy.librarymanagement.adapters.config.exception.GlobalExceptionHandler;
 import com.academy.librarymanagement.adapters.in.LibraryController;
 import com.academy.librarymanagement.domain.Book;
 import com.academy.librarymanagement.domain.FilteredBook;
@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(controllers = LibraryController.class)
-@ContextConfiguration(classes = {RestExceptionHandler.class, LibraryController.class})
+@ContextConfiguration(classes = {GlobalExceptionHandler.class, LibraryController.class})
 @DisplayName("Library Controller Test")
 class LibraryControllerTest {
 
@@ -37,12 +37,7 @@ class LibraryControllerTest {
 
     @Test
     void shouldReturnStatusOk() throws Exception {
-        when(libraryInbound.findAll(any()))
-                .thenReturn(FilteredBook.builder()
-                        .withBooks(List.of(Book.builder().build()))
-                        .withTotal(1)
-                        .build()
-                );
+        when(libraryInbound.findAll(any())).thenReturn(FilteredBook.builder().withBooks(List.of(Book.builder().build())).withTotal(1).build());
 
         mockMvc.perform(get(BookConstants.PATH)
                 .queryParam("page", "0")
