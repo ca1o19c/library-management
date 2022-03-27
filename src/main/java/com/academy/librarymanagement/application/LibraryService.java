@@ -3,30 +3,30 @@ package com.academy.librarymanagement.application;
 import com.academy.librarymanagement.domain.Book;
 import com.academy.librarymanagement.domain.BookSearch;
 import com.academy.librarymanagement.domain.FilteredBook;
-import com.academy.librarymanagement.ports.in.LibraryInbound;
-import com.academy.librarymanagement.ports.in.MongoOperationsInbound;
+import com.academy.librarymanagement.ports.in.LibraryPortInbound;
+import com.academy.librarymanagement.ports.out.MongoDatabaseStorePortOutbound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-class LibraryService implements LibraryInbound {
+class LibraryService implements LibraryPortInbound {
 
     @Autowired
-    private MongoOperationsInbound mongoOperationsInbound;
+    private MongoDatabaseStorePortOutbound mongoDatabaseStorePortOutbound;
 
     @Override
     public FilteredBook findAll(BookSearch search) {
-        return mongoOperationsInbound.findAll(search);
+        return mongoDatabaseStorePortOutbound.findAll(search);
     }
 
     @Override
     public Book findOne(String id) {
-        return mongoOperationsInbound.findOne(id);
+        return mongoDatabaseStorePortOutbound.findOne(id);
     }
 
     @Override
     public void save(Book book) {
-        mongoOperationsInbound.save(book);
+        mongoDatabaseStorePortOutbound.save(book);
     }
 
     @Override
@@ -36,6 +36,6 @@ class LibraryService implements LibraryInbound {
 
     @Override
     public void deleteOne(String id) {
-        mongoOperationsInbound.deleteOne(id);
+        mongoDatabaseStorePortOutbound.deleteOne(id);
     }
 }
