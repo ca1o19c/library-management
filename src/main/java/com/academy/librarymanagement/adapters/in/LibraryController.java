@@ -8,11 +8,10 @@ import com.academy.librarymanagement.domain.Book;
 import com.academy.librarymanagement.domain.BookSearch;
 import com.academy.librarymanagement.domain.FilteredBook;
 import com.academy.librarymanagement.domain.SortType;
-import com.academy.librarymanagement.ports.in.LibraryInbound;
+import com.academy.librarymanagement.ports.in.LibraryPortInbound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -25,11 +24,11 @@ import java.util.stream.Collectors;
 public class LibraryController {
 
     @Autowired
-    private LibraryInbound libraryInbound;
+    private LibraryPortInbound libraryInbound;
 
     @GetMapping
     public ResponseEntity<PageResponse<BookResponse>> findAll(@RequestParam(required = false) String title, @RequestParam(required = false) String publisher,
-                                                              @RequestParam Integer page, @RequestParam Integer limit,
+                                                              @RequestParam(required = false, defaultValue = "0") Integer page, @RequestParam(required = false, defaultValue = "50") Integer limit,
                                                               @RequestParam(value = "sort_type", defaultValue = "asc", required = false) String sortType,
                                                               @RequestParam(value = "initial_date", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate initialDate,
                                                               @RequestParam(value = "final_date", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate finalDate
