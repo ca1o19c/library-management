@@ -30,7 +30,7 @@ class MongoDatabaseStore implements MongoDatabaseStorePortOutbound {
 
     @Override
     public com.academy.librarymanagement.domain.Book findOne(String id) {
-        com.academy.librarymanagement.adapters.out.Book book = mongoDBOperations.findOne(id).orElseThrow(() -> new BookNotFoundException("Book with id " + id + " not found"));
+        com.academy.librarymanagement.adapters.out.Book book = mongoDBOperations.findOne(id).orElseThrow(() -> new BookNotFoundException("Book not found"));
 
         return com.academy.librarymanagement.domain.Book.builder()
                 .withId(book.getId())
@@ -45,7 +45,7 @@ class MongoDatabaseStore implements MongoDatabaseStorePortOutbound {
 
     @Override
     public void deleteOne(String id) {
-        mongoDBOperations.deleteOne(id).orElseThrow(() -> new BookNotFoundException("Book with id " + id + " not found"));
+        mongoDBOperations.deleteOne(id).orElseThrow(() -> new BookNotFoundException("Book not found"));
     }
 
     private FilteredBook buildBookAggregate(ResearchedBook books) {
