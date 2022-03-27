@@ -1,6 +1,10 @@
 package com.academy.librarymanagement.domain;
 
+import com.academy.librarymanagement.adapters.config.exception.BadRequestException;
+
 import java.time.LocalDate;
+
+import static java.util.Objects.isNull;
 
 public class BookSearch {
 
@@ -99,5 +103,27 @@ public class BookSearch {
 
     public SortType getSortType() {
         return sortType;
+    }
+
+
+    public void verifyIfThePageLessThanZero() {
+        if (this.getPage() < 0)
+            throw new BadRequestException("Page index must not be less than zero.");
+    }
+
+    public void verifyIfTheLimitLessThanZero() {
+        if (this.getLimit() < 0)
+            throw new BadRequestException("Limit index must not be less than zero.");
+    }
+
+    public void verifyIfTheLimitGreaterThanFifty() {
+        if (this.getLimit() > 50)
+            throw new BadRequestException("Limit index must not be greater than fifty.");
+    }
+
+    public void verifyIfTheInitialDateBeforeFinalDate() {
+        if (!isNull(this.getInitialDate()) && !isNull(this.getFinalDate()) &&
+                this.getFinalDate().isBefore(this.getInitialDate()))
+            throw new BadRequestException("initial_date must be before final_date");
     }
 }
