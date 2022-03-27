@@ -4,7 +4,7 @@ import com.academy.librarymanagement.adapters.config.exception.GlobalExceptionHa
 import com.academy.librarymanagement.adapters.in.LibraryController;
 import com.academy.librarymanagement.domain.Book;
 import com.academy.librarymanagement.domain.FilteredBook;
-import com.academy.librarymanagement.ports.in.LibraryInbound;
+import com.academy.librarymanagement.ports.in.LibraryPortInbound;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -33,7 +33,7 @@ class LibraryControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private LibraryInbound libraryInbound;
+    private LibraryPortInbound libraryInbound;
 
     @Test
     void shouldReturnStatusOk() throws Exception {

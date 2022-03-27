@@ -4,7 +4,7 @@ import com.academy.librarymanagement.domain.Book;
 import com.academy.librarymanagement.domain.BookSearch;
 import com.academy.librarymanagement.domain.FilteredBook;
 
-public interface LibraryInbound {
+public interface LibraryPortInbound {
     FilteredBook findAll(BookSearch search);
     Book findOne(String id);
     void save(Book book);

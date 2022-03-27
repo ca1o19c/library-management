@@ -6,7 +6,7 @@ import com.academy.librarymanagement.domain.BookSearch;
 
 import java.util.Optional;
 
-public interface MongoDatabaseStoreOutbound {
+public interface MongoDBOperationsPortOutbound {
     ResearchedBook findAll(BookSearch search);
     void save(Book book);
     Optional<com.academy.librarymanagement.adapters.out.Book> findOne(String id);
