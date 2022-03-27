@@ -1,12 +1,7 @@
 package com.academy.librarymanagement.adapters.out;
 
-import com.academy.librarymanagement.adapters.config.exception.BookNotFoundException;
-import com.academy.librarymanagement.domain.Book;
-import com.academy.librarymanagement.domain.BookSearch;
-import com.academy.librarymanagement.domain.FilteredBook;
 import com.academy.librarymanagement.domain.SortType;
 import com.academy.librarymanagement.ports.out.MongoDBOperationsPortOutbound;
-import com.academy.librarymanagement.ports.out.MongoDatabaseStorePortOutbound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -19,7 +14,6 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
