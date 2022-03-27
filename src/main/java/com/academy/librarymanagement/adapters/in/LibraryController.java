@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 public class LibraryController {
 
     @Autowired
-    private LibraryPortInbound libraryInbound;
+    private LibraryPortInbound libraryPortInbound;
 
     @GetMapping
     public ResponseEntity<PageResponse<BookResponse>> findAll(@RequestParam(required = false) String title, @RequestParam(required = false) String publisher,
@@ -44,7 +44,7 @@ public class LibraryController {
                 .withFinalDate(finalDate)
                 .build();
 
-        FilteredBook books = libraryInbound.findAll(search);
+        FilteredBook books = libraryPortInbound.findAll(search);
 
         List<BookResponse> bookResponseList = books.getBooks()
                 .stream()
@@ -62,14 +62,14 @@ public class LibraryController {
     ResponseEntity<Void> create(@Valid @RequestBody BookRequest bookRequest) {
         Book book = BookRequest.from(bookRequest);
 
-        libraryInbound.save(book);
+        libraryPortInbound.save(book);
 
         return ResponseEntity.created(LibraryActions.getLocation(book.getId())).build();
     }
 
     @GetMapping("/{id}")
     ResponseEntity<BookResponse> findOne(@PathVariable String id) {
-        Book book = libraryInbound.findOne(id);
+        Book book = libraryPortInbound.findOne(id);
 
         BookResponse bookResponse = BookResponse.from(book);
 
@@ -79,7 +79,7 @@ public class LibraryController {
     @DeleteMapping("/{id}")
     ResponseEntity<Void> deleteOne(@PathVariable String id) {
 
-        libraryInbound.deleteOne(id);
+        libraryPortInbound.deleteOne(id);
 
         return ResponseEntity.noContent().build();
     }

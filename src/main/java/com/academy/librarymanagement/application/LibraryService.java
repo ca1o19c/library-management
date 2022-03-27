@@ -16,6 +16,15 @@ class LibraryService implements LibraryPortInbound {
 
     @Override
     public FilteredBook findAll(BookSearch search) {
+
+        search.verifyIfThePageLessThanZero();
+
+        search.verifyIfTheLimitLessThanZero();
+
+        search.verifyIfTheLimitGreaterThanFifty();
+
+        search.verifyIfTheInitialDateBeforeFinalDate();
+
         return mongoDatabaseStorePortOutbound.findAll(search);
     }
 
