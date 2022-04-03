@@ -1,6 +1,17 @@
 server:
   port: ${PORT:8080}
-
+springdoc:
+  api-docs:
+    enabled: true
+logging:
+  level:
+    org:
+    springframework: INFO
+    root: INFO
+    data:
+      mongodb:
+        core:
+          MongoTemplate: INFO
 spring:
   main:
     banner-mode: "off"
@@ -12,16 +23,6 @@ spring:
     mongodb:
       uri: ${MONGO_URI}
       field-naming-strategy: org.springframework.data.mapping.model.SnakeCaseFieldNamingStrategy
-logging:
-  level:
-    org:
-    springframework: INFO
-    root: INFO
-    data:
-      mongodb:
-        core:
-           MongoTemplate: INFO
-
 management:
   endpoints:
     web:
