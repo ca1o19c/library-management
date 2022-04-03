@@ -1,6 +1,38 @@
 version: '3'
+
 services:
-  db:
-    image: mongo:3
+  mongo:
+    image: mongo
+    container_name: mongo
     ports:
-      - "27017:27017"
+      - '27017:27017'
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
+    networks:
+      - mongo-dev-network
+    volumes:
+      - ~/.containers/mongo-dev:/data/db
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_AUTH_USERNAME=${MONGO_ROOT_USER}
+      - ME_CONFIG_MONGODB_AUTH_PASSWORD=${MONGO_ROOT_PASSWORD}
+      - ME_CONFIG_BASICAUTH_USERNAME=${MONGO_EXPRESS_LOGIN}
+      - ME_CONFIG_BASICAUTH_PASSWORD=${MONGO_EXPRESS_PASSWORD}
+    depends_on:
+      - mongo
+    networks:
+      - mongo-dev-network
+    volumes:
+      - ~/.containers/mongo-dev:/data/db
+
+networks:
+  mongo-dev-network:
+    driver: bridge
