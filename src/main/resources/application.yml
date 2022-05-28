@@ -1,4 +1,13 @@
-server:
+server:  {
+      "id": "e1721c88-4a4e-40b4-8d62-e69876550fce",
+      "title": "Harry Potter and the Philosopher's Stone",
+      "publisher": "Rocco",
+      "image": "https://upload.wikimedia.org/wikipedia/pt/1/1d/Harry_Potter_Pedra_Filosofal_2001.jpg?20171020203449",
+      "writers": [
+        "J. K. Rowling"
+      ],
+      "created_on": "2022-05-28T19:32:41.973"
+    }
   port: ${PORT:8080}
 springdoc:
   api-docs:
@@ -17,8 +26,6 @@ spring:
     banner-mode: "off"
   application:
     name: library-management-ms
-  profiles:
-    active: local
   data:
     mongodb:
       uri: ${MONGO_URI}
