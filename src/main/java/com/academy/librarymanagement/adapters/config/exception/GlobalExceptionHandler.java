@@ -18,7 +18,7 @@ public class GlobalExceptionHandler {
 
     Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
-    @ExceptionHandler({MethodArgumentNotValidException.class})
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     protected ResponseEntity<Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
 
         List<ErrorObject> errors = ex.getBindingResult().getFieldErrors().stream().map(error -> new ErrorObject(error.getDefaultMessage(), error.getField(), error.getRejectedValue())).collect(Collectors.toList());
@@ -30,7 +30,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler({MissingServletRequestParameterException.class})
+    @ExceptionHandler(MissingServletRequestParameterException.class)
     protected ResponseEntity<Object> handleMissingServletRequestParameterException(MissingServletRequestParameterException ex) {
 
         ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.name());
@@ -40,7 +40,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler({IllegalArgumentException.class})
+    @ExceptionHandler(IllegalArgumentException.class)
     protected ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException ex) {
 
         ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.name());
@@ -51,7 +51,7 @@ public class GlobalExceptionHandler {
     }
 
 
-    @ExceptionHandler({BadRequestException.class})
+    @ExceptionHandler(BadRequestException.class)
     protected ResponseEntity<Object> handleBadRequestException(BadRequestException ex) {
 
         ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.name());
@@ -61,7 +61,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler({BookNotFoundException.class})
+    @ExceptionHandler(BookNotFoundException.class)
     protected ResponseEntity<Object> handleConflictParkingSpot(BookNotFoundException ex) {
 
         ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.name());
