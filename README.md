@@ -13,7 +13,6 @@
 </p>
 
 * [Challenge](#challenge)
-* [Techs](#techs)
 * [How to begin](#how-to-begin)
 
 # Devchallenge
@@ -51,10 +50,6 @@ When registering a new book, it must be stored inside an object in the following
 <b>[PUT] </b> /books/:id: : The route must update the title, publisher, image and information of the writers of the book
 with the id present in the route parameters<br><br>
 <b>[DELETE] </b> /books/:id: :The route must delete the book with the id present in the route parameters<br>
-
-# techs:
-
-- Technology you prefer :)
 
 # How to begin:
 
