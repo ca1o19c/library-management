@@ -10,6 +10,7 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,11 +20,16 @@ public class GlobalExceptionHandler {
     Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    protected ResponseEntity<Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+    protected ResponseEntity<Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex, HttpServletRequest http) {
 
-        List<ErrorObject> errors = ex.getBindingResult().getFieldErrors().stream().map(error -> new ErrorObject(error.getDefaultMessage(), error.getField(), error.getRejectedValue())).collect(Collectors.toList());
+        List<ErrorObject> errors = ex.getBindingResult().getFieldErrors().stream()
+                .map(error ->
+                        new ErrorObject(error.getDefaultMessage(), error.getField(), error.getRejectedValue()))
+                .collect(Collectors.toList());
 
-        ErrorResponse errorResponse = new ErrorResponse("Request has invalid fields", HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase(), ex.getBindingResult().getObjectName(), errors);
+        ErrorResponse errorResponse = new ErrorResponse("Request has invalid fields",
+                HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase(),
+                ex.getBindingResult().getObjectName(), errors, http.getServletPath());
 
         log.error(ExceptionUtils.getStackTrace(ex));
 
@@ -31,9 +37,10 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
-    protected ResponseEntity<Object> handleMissingServletRequestParameterException(MissingServletRequestParameterException ex) {
+    protected ResponseEntity<Object> handleMissingServletRequestParameterException(MissingServletRequestParameterException ex, HttpServletRequest http) {
 
-        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.name());
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST.value(),
+                HttpStatus.BAD_REQUEST.name(), http.getServletPath());
 
         log.error(ExceptionUtils.getStackTrace(ex));
 
@@ -41,9 +48,9 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    protected ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException ex) {
+    protected ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException ex, HttpServletRequest http) {
 
-        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.name());
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.name(),  http.getServletPath());
 
         log.error(ExceptionUtils.getStackTrace(ex));
 
@@ -52,9 +59,9 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(BadRequestException.class)
-    protected ResponseEntity<Object> handleBadRequestException(BadRequestException ex) {
+    protected ResponseEntity<Object> handleBadRequestException(BadRequestException ex, HttpServletRequest http) {
 
-        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.name());
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.name(), http.getServletPath());
 
         log.error(ExceptionUtils.getStackTrace(ex));
 
@@ -62,9 +69,9 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(BookNotFoundException.class)
-    protected ResponseEntity<Object> handleConflictParkingSpot(BookNotFoundException ex) {
+    protected ResponseEntity<Object> handleConflictParkingSpot(BookNotFoundException ex, HttpServletRequest http) {
 
-        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.name());
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.name(), http.getServletPath());
 
         log.error(ExceptionUtils.getStackTrace(ex));
 
