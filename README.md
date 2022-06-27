@@ -15,13 +15,6 @@
 * [Challenge](#challenge)
 * [How to begin](#how-to-begin)
 
-# Devchallenge
-
-<a href="https://devchallenge.now.sh/"> DevChallenge</a> allows you to develop your skills as a programmer! join our
-<a href="https://discord.gg/yvYXhGj">community</a> o/
-
-# Challenge
-
 Build the backend for a library management system!
 
 ## Requirements:
@@ -56,4 +49,3 @@ with the id present in the route parameters<br><br>
 1 - Use this template (by clicking Use this template) or fork this repository with the initial code<br>
 2 - Read the instructions at readme.md<br>
 3 - Start coding! Feel free to use whatever workflow you find most comfortable<br>
-4 - Share your result with the community! #devchallenge
