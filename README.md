@@ -46,6 +46,5 @@ with the id present in the route parameters<br><br>
 
 # How to begin:
 
-1 - Use this template (by clicking Use this template) or fork this repository with the initial code<br>
-2 - Read the instructions at readme.md<br>
-3 - Start coding! Feel free to use whatever workflow you find most comfortable<br>
+1 - Read the instructions at readme.md<br>
+2 - Start coding! Feel free to use whatever workflow you find most comfortable<br>
